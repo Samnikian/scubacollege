@@ -1,9 +1,15 @@
 <?php
 function clean($string) {
+        if(DEBUG){
+            echo '<span class="debug">Function call: clean</span>';
+        }
 	$string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
 	return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
 }
 function isIngelogd(){
+        if(DEBUG){
+            echo '<span class="debug">Function call: isIngelogd</span>';
+        }
 	if(isset($_SESSION['ingelogt']) && isset($_SESSION['user_level']) && $_SESSION['ingelogt']){
 		return true;
 	}
@@ -12,6 +18,9 @@ function isIngelogd(){
 	}
 }
 function haalNieuwsArtikel($id,&$db){
+        if(DEBUG){
+            echo '<span class="debug">Function call: haalNieuwsArtikel (id: '.$id.')</span>';
+        }
 	$query = "SELECT * FROM `nieuws` WHERE `id`='".$id."';";
 	if($result = $db->query($query)){
 		if($result->num_rows > 0){
@@ -31,6 +40,9 @@ function redirect(){
 	echo '<p class="melding"><a href="index.php">U word binnen 5 seconden doorverwezen naar de startpagina, klik hier indien dit niet gebeurd.</a></p>';
 }
 function createAddToCalendar($event){
+        if(DEBUG){
+            echo '<span class="debug">Function call: createAddToCalendar</span>';
+        }
 	$output = "<a href=\"http://scubacollege.be/kalender.php#".$event['id']."\" title=\"Toevoegen aan je agenda\" class=\"addthisevent\">";
 	$output.= "Toevoegen aan je agenda!";
 	$output.= "<span class=\"_start\">".$event['begin']."</span>";

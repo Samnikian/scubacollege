@@ -11,8 +11,8 @@ if($db->connect_errno > 0){
 }
 require_once('includes/functions.php');
 ?>
-<!doctype html public "-//w3c//dtd xhtml 1.0 strict//en" "http://www.w3.org/tr/xhtml1/dtd/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!doctype html>
+<html lang="en">
 	<head>
 		<title>Leren duiken - padi duikschool/duikclub/duikcentrum Scuba College mechelen/antwerpen</title>
 		<meta name="description" content="leren duiken - padi duikschool/duikclub/duikcentrum scuba college mechelen/antwerpen" />
@@ -21,7 +21,7 @@ require_once('includes/functions.php');
 		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 		<script type="text/javascript" src="https://addthisevent.com/libs/1.5.8/ate.min.js"></script>
 		<link rel="icon" type="image/ico" href="favicon.ico" />
-		<link rel="stylesheet" type="text/css" href="opmaak.css" />
+		<link rel="stylesheet" type="text/css" href="opmaak.php" />
 		<?php
 			if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] != 'POST'){
 				if(strpos($_SERVER['PHP_SELF'],'contact.php') !== false or strpos($_SERVER['PHP_SELF'],'initiatie.php') !== false){
