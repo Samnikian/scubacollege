@@ -1,5 +1,5 @@
 <?php
-define('DEBUG' , true);
+define('DEBUG' , false);
 
 define('INITIATIE_MAIL','info@mortelmans.org');
 define('CONTACT_MAIL','info@mortelmans.org');

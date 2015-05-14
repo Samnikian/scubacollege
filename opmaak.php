@@ -506,3 +506,9 @@ p{
 .addthisevent{
 	visibility:hidden;
 }
+.debug{
+    display: inline-block;
+    background-color:red;
+    margin:1.5px;
+    padding:1.5px;
+}

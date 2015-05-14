@@ -10,6 +10,7 @@ if($db->connect_errno > 0){
 	die('Unable to connect to database [' . $db->connect_error . ']');
 }
 require_once('includes/functions.php');
+$ingelogd = isIngelogd();
 ?>
 <!doctype html>
 <html lang="en">
@@ -67,21 +68,21 @@ require_once('includes/functions.php');
 			<a href="links.php">Interessante links</a>
 			
 			<?php
-			if(isIngelogd() && $_SESSION['user_level'] >= ADMIN){
+			if($ingelogd && $_SESSION['user_level'] >= ADMIN){
 				echo "<div class=\"boxkopl\">Admin</div>";
 				echo "<a href=\"logout.php\">Uitloggen</a><br />";
 				echo "<a href=\"nieuws_toevoegen.php\">Nieuws Item Toevoegen</a><br />";
 			}
-			if(isIngelogd() && $_SESSION['user_level'] >= STAFF){
+			if($ingelogd && $_SESSION['user_level'] >= STAFF){
 				echo "<div class=\"boxkopl\">Staff</div>";
 				echo "<a href=\"logout.php\">Uitloggen</a><br />";
 				echo "<a href=\"nieuws_toevoegen.php\">Nieuws Item Toevoegen</a><br />";
 			}
-			elseif(isIngelogd() && $_SESSION['user_level'] >= INSTRUCTOR){
+			elseif($ingelogd && $_SESSION['user_level'] >= INSTRUCTOR){
 				echo "<div class=\"boxkopl\">Instructeur</div>";
 				echo "<a href=\"logout.php\">Uitloggen</a><br />";
 			}
-			elseif(isIngelogd() && $_SESSION['user_level'] >= USER){
+			elseif($ingelogd && $_SESSION['user_level'] >= USER){
 				echo "<div class=\"boxkopl\">Leden</div>";
 				echo "<a href=\"logout.php\">Uitloggen</a><br />";
 			}

@@ -7,7 +7,7 @@ if($result = $db->query($query)){
 		while($row = $result->fetch_assoc()){
 			echo "<p class=\"nieuwsitem\">";
 			echo "<strong class=\"titel\"><span class=\"links\">&nbsp;".$row['titel'];
-			if(isIngelogd() && $_SESSION['user_level'] > INSTRUCTOR){
+			if($ingelogd && $_SESSION['user_level'] > INSTRUCTOR){
 				echo "&nbsp;<a href=\"nieuws_bewerken.php?i=".$row['id']."\">[bewerken]</a>";
 				echo "&nbsp;<a href=\"nieuws_verwijderen.php?i=".$row['id']."\">[verwijderen]</a>";
 			}
