@@ -1,35 +1,33 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-        <meta name="description" content="">
-        <link rel='stylesheet' type='text/css' href='css/opmaak.php' />
-    </head>
-    <body>
-        <div id="wrapper">
-            <!-- the header and navigation -->
-            <div id="header">
-                <div id="navigation">
-                    <ul>
-                        <li><a href="#">navigation1</a></li>
-                        <li><a href="#">navigation2</a></li>
-                    </ul>
-                </div>
-            </div>
-            <!-- the sidebar -->
-            <div id="sidebar">
-                <p>here is the sidebar</p>
-            </div>
-            <!-- the content -->
-            <div id="content">
-                <p>here is the content</p>
-            </div>
-            <!-- the footer -->
-            <div id="footer">
-                <p>Here is the footer</p>
-            </div>
-        </div>
+<?php
+require_once('header.php');
+require_once "includes/JBBCode/Parser.php";
+$query = 'SELECT * FROM `nieuws` ORDER BY `aangemaakt` DESC,`prioriteit` ASC;';
+if($result = $db->query($query)){
+	if($result->num_rows > 0){
+		while($row = $result->fetch_assoc()){
+			echo "<p class=\"nieuwsitem\">";
+			echo "<strong class=\"titel\"><span class=\"links\">&nbsp;".$row['titel'];
+			if(isIngelogd() && $_SESSION['user_level'] > INSTRUCTOR){
+				echo "&nbsp;<a href=\"nieuws_bewerken.php?i=".$row['id']."\">[bewerken]</a>";
+				echo "&nbsp;<a href=\"nieuws_verwijderen.php?i=".$row['id']."\">[verwijderen]</a>";
+			}
+			echo "</span>";
+			echo "<span class=\"rechts\">".date('d/m/Y',$row['aangemaakt'])."&nbsp;</span></strong>";
+			$parser = new JBBCode\Parser();
+			$parser->addCodeDefinitionSet(new JBBCode\DefaultCodeDefinitionSet());
+			$parser->parse($row['tekst']);
+			echo "<span class=\"nieuwsitemtekst\">".$parser->getAsHtml()."</span>";
+			if($row['foto'] !== 'geen'){
+				echo "<br /><img src=\"".$row['foto']."\" />";
+			}
+			echo "</p>";
+		}
+	}
+}
+?>
+<?php
+require_once('footer.php');
+?>
 
-    </body>
-</html>
+
+ 

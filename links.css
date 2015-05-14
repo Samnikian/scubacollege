@@ -1,0 +1,68 @@
+#table_links{
+	margin-top: 55px;
+	width:100%;
+	padding: 15px;
+	text-align: center;
+}
+#table_links a, #table_links a:hover{
+	color:#333;
+	font-weight:normal;
+}
+#table_links td{
+	height:105px;
+}
+#brevawood img{
+	width:169px;
+	height:52px;
+}
+#cocktails img{
+	width:148px;
+	height:77px;
+}
+#tearoom span{
+	color: rgb(31, 73, 125);
+	font-family: Forte;
+	font-size: 21px;
+	orphans: 2;
+	text-align: center;
+	text-indent: 0px;
+	text-transform: none;
+	widows: 2;
+	word-spacing: 0px;
+	-webkit-text-size-adjust: auto;
+	-webkit-text-stroke-width: 0px;
+	background-color: rgba(255, 255, 255, 0.917969);
+	display: inline;
+	float: none; 
+}
+#duikbuddy img{
+	width:172px;
+	height:68px;
+}
+#dvh img{
+	width:180px;
+	height:87px;
+}
+#hippo h2{
+	margin-bottom: -6px;
+}
+#hippo span{
+	color: rgb(34, 34, 34);
+	font-family: 'Century Gothic', sans-serif;
+	orphans: 2;
+	text-indent:0px;
+	text-transform: none;
+	widows: 2;
+	word-spacing: 0px;
+	-webkit-text-size-adjust: auto;
+	-webkit-text-stroke-width: 0px;
+	text-align: center;
+}
+#vecolec img{
+	width: 112px;
+	height: 32px;
+}
+#mortelmans img{
+	width:200px;
+	height:40px;
+}

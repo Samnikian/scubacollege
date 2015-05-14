@@ -1,0 +1,17 @@
+#flowchart{
+	display:inline;
+	height: 478px;
+	width:800px;
+	border: 0px solid black;
+	width: 800px;
+}
+#contentcenter{
+	text-align: center;
+	background				: #fff;
+	float					: left;
+	width					: 100%;
+	padding					: 15px 0 0 0;
+	min-height				: 500px;
+	border-left				: 0px solid #9999cc;
+	border-right			: 0px solid #9999cc;
+}
