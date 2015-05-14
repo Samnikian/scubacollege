@@ -9,7 +9,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 		$_SESSION['user_level'] = STAFF;
 		$_SESSION['user_id'] = 0;
 		echo '<p class="melding">Je werd succesvol ingelogt!</p>';
-		redirect();
+		redirect('index.php');
 	}
 	else{
 		header('Location: index.php');

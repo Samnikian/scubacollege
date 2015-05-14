@@ -47,7 +47,7 @@ elseif(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD']=='POST'){
 				unlink($_POST['foto']);
 			}
 			echo '<p class="melding">Het artikel <b>'.$titel.'</b> werd verwijderd!</p>';
-			redirect();
+			redirect('index.php');
 		}
 		else{
 			echo '<p class="melding">Database error!</p>';

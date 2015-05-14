@@ -96,7 +96,7 @@ elseif(isIngelogd() && isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_ME
 				else{
 					if($db->query($query)){
 						echo '<p class="melding">Je nieuwsbericht werd aangepast!</p>';
-						redirect();
+						redirect('index.php');
 					}
 					else{
 						if(strpos($db->error,'Duplicate') !== false){

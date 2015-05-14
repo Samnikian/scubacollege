@@ -63,7 +63,7 @@ else{
 				else{
 					if($db->query($query)){
 						echo '<p class="melding">Je nieuwsbericht werd toegevoegd!</p>';
-						redirect();
+						redirect('index.php');
 					}
 					else{
 						if(strpos($db->error,'Duplicate') !== false){

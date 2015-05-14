@@ -6,6 +6,6 @@ unset($_SESSION['ingelogt']);
 unset($_SESSION['ingelogt']);
 session_destroy();
 echo '<div id="content">Je werd succesvolg uitgelogt!</div>';
-redirect();
+redirect('index.php');
 require_once('footer.php');
 ?>

@@ -35,9 +35,9 @@ function haalNieuwsArtikel($id,&$db){
 		return false;
 	}
 }
-function redirect(){
+function redirect($page){
 	header('refresh: 5; url=index.php');
-	echo '<p class="melding"><a href="index.php">U word binnen 5 seconden doorverwezen naar de startpagina, klik hier indien dit niet gebeurd.</a></p>';
+	echo '<p class="melding"><a href="'.$page.'">U word binnen 5 seconden doorverwezen naar de startpagina, klik hier indien dit niet gebeurd.</a></p>';
 }
 function createAddToCalendar($event){
         if(DEBUG){

@@ -54,7 +54,7 @@ $ingelogd = isIngelogd();
 			<a href="initiatie.php">Gratis duikinitiatie</a><br />
 			<a href=""> Leer nu duiken</a><br /><br />
 			<a href="">Locatie & planning</a><br />
-			<a href="">Padi duikopleidingen</a><br /><br />
+			<a href="opleidingen.php">Padi duikopleidingen</a><br /><br />
 			
 			<div class="boxkopl">Club</div>
 			<a href="">Informatie</a><br />
