@@ -54,7 +54,7 @@ elseif(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST'
 		$bericht = filter_var($_POST['bericht'],FILTER_SANITIZE_STRING);
 		$response = $_POST['g-recaptcha-response'];
 		$ip = $_SERVER['REMOTE_ADDR'];
-		$query = 'https://www.google.com/recaptcha/api/siteverify?secret='.CAPTCHA_SECRET'&response='.$response.'&remoteip='.$ip;
+		$query = 'https://www.google.com/recaptcha/api/siteverify?secret='.CAPTCHA_SECRET.'&response='.$response.'&remoteip='.$ip;
 		$query_result = json_decode(file_get_contents($query),true);
 		$error = false;
 		$errormsg = '<ul>';
@@ -88,18 +88,28 @@ elseif(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST'
 		}
 		$errormsg.='</ul>';
 		if(!$error){
-			require_once('includes/phpmailer.php');
+			require_once('includes/PHPMailerAutoload.php');
 			$mail             = new PHPMailer(); // defaults to using php "mail()"
-			$body = file_get_contents('contactmailtemplate.html');
+                        $mail->IsSMTP();
+                        if(DEBUG){
+                                $mail->SMTPDebug  = 2;
+                        }
+                        $mail->SMTPAuth   = true;
+                        $mail->Host       = SMTP_HOST;
+                        $mail->Port       = SMTP_PORT;
+                        $mail->Username   = SMTP_USER;
+                        $mail->Password   = SMTP_PASSWORD;
+                        $mail->SMTPSecure = 'ssl';
+			$body = file_get_contents('includes/contacttemplate.html');
 			$body = str_replace('REPLACEACHTERNAAM',$naam,$body);
 			$body = str_replace('REPLACEVOORNAAM',$voornaam,$body);
 			$body = str_replace('REPLACEGSM',$gsm,$body);
 			$body = str_replace('REPLACEEMAIL',$email,$body);
 			$body = str_replace('REPLACEONDERWERP',$onderwerp,$body);
 			$body = str_replace('REPLACEBERICHT',nl2br($bericht),$body);
-			$mail->SetFrom('website@scubacollege.be', 'Scubacollege');
+			$mail->SetFrom(MAIL_FROM, 'Scubacollege');
 			$mail->AddReplyTo($email,$naam." ".$voornaam);
-			$mail->AddAddress(CONTACT_EMAIL, "Scubacollege");
+			$mail->AddAddress(CONTACT_MAIL, "Scubacollege");
 			$mail->Subject    = "Bericht via scubacollege.be contactformulier.";
 			$mail->AltBody    = "Om dit bericht te kunnen lezen heb je een email client nodig die HTML ondersteund!";
 			$mail->MsgHTML($body);

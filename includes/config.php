@@ -2,7 +2,13 @@
 define('DEBUG' , false);
 
 define('INITIATIE_MAIL','info@mortelmans.org');
-define('CONTACT_MAIL','info@mortelmans.org');
+define('CONTACT_MAIL' , 'info@mortelmans.org');
+
+define('SMTP_HOST','send.one.com');
+define('SMTP_PORT','465');
+define('SMTP_USER','info@mortelmans.org');
+define('SMTP_PASSWORD','Samnikian007');
+define('MAIL_FROM', 'info@mortelmans.org');//website@scubacollege.be
 
 define('CAPTCHA_SECRET','6LeuJgETAAAAAG91qXfn5H2g-tohJ5PEWjiicCUj');
 
