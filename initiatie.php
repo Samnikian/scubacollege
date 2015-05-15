@@ -63,7 +63,7 @@ require_once('header.php');
         </p>
         <fieldset>
             <legend><strong>Schrijf je hier in voor een <u>GRATIS</u> duikinitiatie :</strong></legend>
-            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+            <form action="<?php echo filter_var($_SERVER['PHP_SELF'],FILTER_SANITIZE_URL); ?>" method="post">
                 <label for="naam">Naam</label><input type="text" name="naam" id="naam" value="<?php echo $naam; ?>" /><br />
                 <label for="voornaam">Voornaam</label><input type="text" name="voornaam" id="voornaam" value="<?php echo $voornaam; ?>" /><br />
                 <label for="geboortedatum">Geboortedatum (dd/mm/jjjj)</label><input type="text" name="geboortedatum" id="geboortedatum" value="<?php echo $geboortedatum; ?>" /><br />
