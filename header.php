@@ -6,8 +6,8 @@ date_default_timezone_set('Europe/Brussels');
 //$_SESSION['user_level'] = 2;
 require_once('includes/config.php');
 $db = new mysqli(HOST, USERNAME, PASSWORD, DATABASE);
-if($db->connect_errno > 0){
-	die('Unable to connect to database [' . $db->connect_error . ']');
+if(DEBUG and $db->connect_errno > 0){
+	die('<span class="error">Unable to connect to database [' . $db->connect_error . ']</span>');
 }
 require_once('includes/functions.php');
 $ingelogd = isIngelogd();
@@ -25,14 +25,14 @@ $ingelogd = isIngelogd();
 		<link rel="stylesheet" type="text/css" href="opmaak.php" />
 		<?php
 			if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] != 'POST'){
-				if(strpos($_SERVER['PHP_SELF'],'contact.php') !== false or strpos($_SERVER['PHP_SELF'],'initiatie.php') !== false){
+				if(strpos(filter_var($_SERVER['PHP_SELF'],FILTER_SANITIZE_URL),'contact.php') !== false or strpos($_SERVER['PHP_SELF'],'initiatie.php') !== false){
 					echo "<script src='https://www.google.com/recaptcha/api.js'></script>";
 				}
 				
 			}
 		?>
 		<?php
-			if(strpos($_SERVER['PHP_SELF'],'links.php') !== false){
+			if(strpos(filter_var($_SERVER['PHP_SELF'],FILTER_SANITIZE_URL),'links.php') !== false){
 				echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"links.css\" />";
 			}
 		?>
