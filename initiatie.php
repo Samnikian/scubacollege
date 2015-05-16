@@ -63,7 +63,7 @@ require_once('header.php');
         </p>
         <fieldset>
             <legend><strong>Schrijf je hier in voor een <u>GRATIS</u> duikinitiatie :</strong></legend>
-            <form action="<?php echo filter_var($_SERVER['PHP_SELF'],FILTER_SANITIZE_URL); ?>" method="post">
+            <form action="<?php echo filter_var($_SERVER['PHP_SELF'], FILTER_SANITIZE_URL); ?>" method="post">
                 <label for="naam">Naam</label><input type="text" name="naam" id="naam" value="<?php echo $naam; ?>" /><br />
                 <label for="voornaam">Voornaam</label><input type="text" name="voornaam" id="voornaam" value="<?php echo $voornaam; ?>" /><br />
                 <label for="geboortedatum">Geboortedatum (dd/mm/jjjj)</label><input type="text" name="geboortedatum" id="geboortedatum" value="<?php echo $geboortedatum; ?>" /><br />
@@ -183,7 +183,8 @@ require_once('header.php');
                         break;
                 }
                 $to = 'info@mortelmans.org';
-                require_once('includes/PHPMailerAutoload.php');
+                require_once('includes/PHPMailer.class.php');
+                require_once('includes/SMTP.class.php');
                 $mail = new PHPMailer(); // defaults to using php "mail()"
                 $mail->IsSMTP();
                 if (DEBUG) {
@@ -240,6 +241,6 @@ require_once('header.php');
     }
     ?>
 </div>
-    <?php
-    require_once('footer.php');
-    ?>
+<?php
+require_once('footer.php');
+?>

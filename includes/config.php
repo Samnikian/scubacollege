@@ -27,4 +27,5 @@ define('EVENT_ORGANISATOR','Scubacollege');
 define('EVENT_ORGANISATOR_EMAIL','info@scubacollege.be');
 define('EVENT_DATUMFORMAAT','DD/MM/YYYY');
 define('EVENT_TIMEZONE','40'); //40=Brussel
+define('EVENT_CALENDAR_URL','http://scubacollege.be/kalender.php#')
 ?>

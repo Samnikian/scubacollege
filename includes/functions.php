@@ -39,23 +39,4 @@ function redirect($page){
 	header('refresh: 5; url=index.php');
 	echo '<p class="melding"><a href="'.$page.'">U word binnen 5 seconden doorverwezen naar de startpagina, klik hier indien dit niet gebeurd.</a></p>';
 }
-function createAddToCalendar($event){
-        if(DEBUG){
-            echo '<span class="debug">Function call: createAddToCalendar</span>';
-        }
-	$output = "<a href=\"http://scubacollege.be/kalender.php#".$event['id']."\" title=\"Toevoegen aan je agenda\" class=\"addthisevent\">";
-	$output.= "Toevoegen aan je agenda!";
-	$output.= "<span class=\"_start\">".$event['begin']."</span>";
-	$output.= "<span class=\"_end\">".$event['einde']."</span>";
-	$output.= "<span class=\"_zonecode\">".EVENT_TIMEZONE."</span>";
-	$output.= "<span class=\"_summary\">".$event['omschrijving']."</span>";
-	$output.= "<span class=\"_description\">".$event['titel']."</span>";
-	$output.= "<span class=\"_location\">".$event['locatie']."</span>";
-	$output.= "<span class=\"_organizer\">".EVENT_ORGANISATOR."</span>";
-	$output.= "<span class=\"_organizer_email\">".EVENT_ORGANISATOR_EMAIL."</span>";
-	$output.= "<span class=\"_facebook_event\">".$event['fblink']."</span>";	//http://www.facebook.com/events/160427380695693
-	$output.= "<span class=\"_all_day_event\">".$event['heledag']."</span>";
-	$output.= "<span class=\"_date_format\">".EVENT_DATUMFORMAAT."</span>";
-	$output.= "</a>";
-}
 ?>

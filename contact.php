@@ -88,7 +88,8 @@ elseif(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST'
 		}
 		$errormsg.='</ul>';
 		if(!$error){
-			require_once('includes/PHPMailerAutoload.php');
+			require_once('includes/PHPMailer.class.php');
+                        require_once('includes/SMTP.class.php');
 			$mail             = new PHPMailer(); // defaults to using php "mail()"
                         $mail->IsSMTP();
                         if(DEBUG){
