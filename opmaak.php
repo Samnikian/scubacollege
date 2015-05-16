@@ -270,21 +270,18 @@ p{
 	margin-left: auto;
 	margin-right: auto;
 }
-#contact fieldset form .bericht{
+fieldset form .bericht{
 		display:inline-block;
 	margin-left: auto;
 	margin-right: auto;
 	width:366px;
 	text-align:left;
 }
-#contact fieldset form .bericht textarea{
+fieldset form .bericht textarea{
 	width:100%;
 	height:150px;
 }
-.errorr{
-	width: 75%;
-	padding: 25px;
-}
+
 .errorr li{
 	color:red;
 	width: 100%;
@@ -314,6 +311,7 @@ p{
 	height:160px;
 }
 .melding{
+        font-weight:bold;
 	width:100%;
 	text-align:center;
 	display:block;

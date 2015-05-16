@@ -39,4 +39,16 @@ function redirect($page){
 	header('refresh: 5; url=index.php');
 	echo '<p class="melding"><a href="'.$page.'">U word binnen 5 seconden doorverwezen naar de startpagina, klik hier indien dit niet gebeurd.</a></p>';
 }
+function IsDate( $Str ){
+  $Stamp = strtotime( $Str );
+  $Month = date( 'm', $Stamp );
+  $Day   = date( 'd', $Stamp );
+  $Year  = date( 'Y', $Stamp );
+  if(!empty($Stamp)){
+      return checkdate( $Month, $Day, $Year );
+  }
+  else{
+      return false;
+  }   
+}
 ?>

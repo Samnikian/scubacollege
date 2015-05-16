@@ -1,7 +1,9 @@
 <?php
+ob_start();
 session_start();
 session_regenerate_id();
 date_default_timezone_set('Europe/Brussels');
+error_reporting(E_ALL);
 //$_SESSION['ingelogt'] = true;
 //$_SESSION['user_level'] = 2;
 require_once('includes/config.php');
