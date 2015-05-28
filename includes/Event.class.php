@@ -8,7 +8,6 @@ class event {
     private $locatie;
     private $fblink;
     private $heledag;
-    private $minniveau;
     public function __construct() {
         
     }
