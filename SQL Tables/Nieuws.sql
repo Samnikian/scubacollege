@@ -9,4 +9,4 @@ CREATE TABLE IF NOT EXISTS `nieuws` (
   `prioriteit` int(3) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `titel` (`titel`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;

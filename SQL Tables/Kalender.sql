@@ -9,4 +9,4 @@ CREATE TABLE IF NOT EXISTS `kalender` (
     `heledag` varchar(5) NOT NULL,
     `minniveau` int(5) NOT NULL,
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
