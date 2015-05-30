@@ -7,9 +7,9 @@ require_once('header.php');
 	</p>
 	<?php
         //unset($_SESSION['contact']);
-        require_once('includes/Mail.class.php');
-        $mail = new Mail();
-        echo $mail->getOutput();
+        require_once('includes/Contact.class.php');
+        $contact = new Contact();
+        echo $contact->getOutput();
         ?>
 </div>
 <?php
