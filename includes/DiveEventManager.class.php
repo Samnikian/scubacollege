@@ -2,6 +2,7 @@
 class DiveEventManager{
     private $DiveEvents = array();
     private $db;
+    //private $maanden = array($jan,$feb,$maa,$apr,$jun,$jul,$aug,$sep,$okt,$nov,$dec);
     public function __construct(&$dbref){
         $this->db = $dbref;
         $this->loadEvents();
@@ -11,7 +12,8 @@ class DiveEventManager{
         try{
             $result = $this->db->query($query);
             while($row = $result->fetch_assoc()){
-                $this->DiveEvents[] = $row;
+                $tmpobj = new DiveEvent($row['id'],$row['begin'],$row['einde'], $row['omschrijving'], $row['titel'],$row['locatie'],$row['fblink'],$row['minniveau'],$row['heledag']);
+                $this->DiveEvents[] = $tmpobj;
             }
             $result->close();
         }
@@ -20,17 +22,30 @@ class DiveEventManager{
         }
     }
     public function getHTMLTable(){
-        
+        $output = '<table id="eventTable">';
+        $output.= '<tr id="eventHeader"><td>Wanneer</td><td>Omschrijving - Informatie</td><td>Locatie</td><td>Min Niveau</td></tr>';
+        foreach($this->DiveEvents as $evnt){
+            $output.= $evnt->getTrHTML(false);
+        }
+        $output.='</table>';
+        return $output;
     }
     public function printEvents(){
         echo '<pre>';
         print_r($this->DiveEvents);
         echo '</pre>';
     }
+    private function sorteerOpMaand(){
+        foreach($this->DiveEvents as $DiveEvnt){
+            switch(date('m',$DiveEvnt)){
+                case 1:
+                    
+                case 2:
+                    
+                case 3:
+            
+            }
+        }
+    }
 }
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 

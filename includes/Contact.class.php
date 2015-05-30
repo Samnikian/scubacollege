@@ -30,7 +30,7 @@ class Contact {
             if (isset($_SESSION['contact'])) {
                 $this->importSessionData();
             }
-            $this->getContactForm();
+            $this->getForm();
         }
     }
 
@@ -38,23 +38,19 @@ class Contact {
         return $this->output;
     }
 
-    private function getContactForm() {
+    private function getForm() {
         $this->output = '';
-        if ($this->error) {
-            $this->output.= '<fieldset class="errorr"><legend>Gelieve de volgende fouten te corrigeren</legend>';
-            $this->output.= $this->errormsg;
-            $this->output.= '</fieldset>';
-        }
+        $this->AddErrors();
         $this->output.= '<fieldset>';
         $this->output.='<legend>Stuur ons een bericht</legend>';
         $this->output.='<form action="' . FILE_CONTACT_FORM . '" method="POST">';
-        $this->output.='<label for = "naam">Naam</label><input type = "text" name = "naam" id = "naam" value = "' . $this->naam . '" /><br />';
-        $this->output.='<label for="voornaam">Voornaam</label><input type="text" name="voornaam" id="voornaam" value="' . $this->voornaam . '" /><br />';
-        $this->output.='<label for = "gsm">GSM/Telefoon</label><input type = "text" name = "gsm" id = "gsm" value = "' . $this->gsm . '" /><br />';
-        $this->output.='<label for="email">Email adres</label><input type="text" name="email" id="email" value="' . $this->email . '" /><br />';
-        $this->output.='<label for = "onderwerp">Onderwerp</label><input type = "text" name = "onderwerp" id = "onderwerp" value = "' . $this->onderwerp . '" /><br />';
+        $this->output.='<label for = "naam">Naam</label><input type = "text" name = "naam" id = "naam" value = "' . $this->naam . '" required /><br />';
+        $this->output.='<label for="voornaam">Voornaam</label><input type="text" name="voornaam" id="voornaam" value="' . $this->voornaam . '" required /><br />';
+        $this->output.='<label for = "gsm">GSM/Telefoon</label><input type = "text" name = "gsm" id = "gsm" value = "' . $this->gsm . '" required /><br />';
+        $this->output.='<label for="email">Email adres</label><input type="email" name="email" id="email" value="' . $this->email . '" required /><br />';
+        $this->output.='<label for = "onderwerp">Onderwerp</label><input type = "text" name = "onderwerp" id = "onderwerp" value = "' . $this->onderwerp . '" required /><br />';
         $this->output.='<p class="bericht"><label for = "bericht">Bericht</label><br />';
-        $this->output.='<textarea name="bericht" id="bericht" />' . $this->bericht . '</textarea>';
+        $this->output.='<textarea name="bericht" id="bericht" required />' . $this->bericht . '</textarea>';
         $this->output.='</p><br />';
         $this->output.='<div id = "recaptcha" class = "g-recaptcha" data-sitekey="' . CAPTCHA_SITEKEY . '"></div><br />';
         $this->output.='<input type="submit" value="Verzenden" />';
@@ -64,34 +60,12 @@ class Contact {
     private function checkErrors() {
         $this->error = false;
         $this->errormsg = '<ul>';
-        if ($this->query_result["success"] === false) {
-            $this->error = true;
-            $this->errormsg.= '<li>Je moet bewijzen dat je geen robot bent.</li>';
-        }
-        if ($this->naam !== NULL and strlen($this->naam) < 3) {
-            $this->error = true;
-            $this->errormsg.= '<li>Je naam moet minstens 3 tekens bevatten.</li>';
-        }
-        if ($this->voornaam !== NULL and strlen($this->voornaam) < 2) {
-            $this->error = true;
-            $this->errormsg.= '<li>Je voornaam moet minstens 2 tekens bevatten.</li>';
-        }
-        if ($this->gsm !== NULL and strlen($this->gsm) < 9) {
-            $this->error = true;
-            $this->errormsg.= '<li>Je gsm/telefoonnummer is niet geldig.</li>';
-        }
-        if ($this->email !== NULL and ! filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
-            $this->error = true;
-            $this->errormsg.= '<li>Gelieve een geldig email adres op te geven.</li>';
-        }
-        if ($this->onderwerp !== NULL and strlen($this->onderwerp) < 4) {
-            $this->error = true;
-            $this->errormsg.= '<li>Je onderwerp moet minstens 4 tekens bevatten.</li>';
-        }
-        if ($this->bericht !== NULL and strlen($this->bericht) < 10) {
-            $this->error = true;
-            $this->errormsg.= '<li>Je bericht moet minstens 10 tekens bevatten.</li>';
-        }
+        $this->CheckCaptcha();
+        $this->CheckNames();
+        $this->CheckGSM();
+        $this->CheckEmail();
+        $this->CheckSubject();
+        $this->CheckMessage();
         $this->errormsg.='</ul>';
     }
 
@@ -171,7 +145,54 @@ class Contact {
         $this->mailer->Password = SMTP_PASSWORD;
         $this->mailer->SMTPSecure = 'ssl';
     }
+    protected function AddErrors(){
+        if ($this->error) {
+            $this->output.= '<fieldset class="errorr"><legend>Gelieve de volgende fouten te corrigeren</legend>';
+            $this->output.= $this->errormsg;
+            $this->output.= '</fieldset>';
+        }
+    }
+    protected function CheckCaptcha() {
+        if ($this->query_result["success"] === false) {
+            $this->error = true;
+            $this->errormsg.= '<li>Je moet bewijzen dat je geen robot bent.</li>';
+        }
+    }
 
+    protected function CheckNames() {
+        if ($this->naam !== NULL and strlen($this->naam) < 3) {
+            $this->error = true;
+            $this->errormsg.= '<li>Je naam moet minstens 3 tekens bevatten.</li>';
+        }
+        if ($this->voornaam !== NULL and strlen($this->voornaam) < 2) {
+            $this->error = true;
+            $this->errormsg.= '<li>Je voornaam moet minstens 2 tekens bevatten.</li>';
+        }
+    }
+    protected function CheckGSM(){
+        if ($this->gsm !== NULL and strlen($this->gsm) < 9) {
+            $this->error = true;
+            $this->errormsg.= '<li>Je gsm/telefoonnummer is niet geldig.</li>';
+        }
+    }
+    protected function CheckEmail(){
+        if ($this->email !== NULL and ! filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+            $this->error = true;
+            $this->errormsg.= '<li>Gelieve een geldig email adres op te geven.</li>';
+        }
+    }
+    private function CheckSubject(){
+                if ($this->onderwerp !== NULL and strlen($this->onderwerp) < 4) {
+            $this->error = true;
+            $this->errormsg.= '<li>Je onderwerp moet minstens 4 tekens bevatten.</li>';
+        }
+    }
+    private function CheckMessage(){
+        if ($this->bericht !== NULL and strlen($this->bericht) < 10) {
+            $this->error = true;
+            $this->errormsg.= '<li>Je bericht moet minstens 10 tekens bevatten.</li>';
+        }
+    }
 }
 
 ?>
