@@ -22,5 +22,4 @@ class DiveEvent extends Event {
         
         return $output;
     }
-
 }

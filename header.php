@@ -22,10 +22,8 @@ $ingelogd = isIngelogd();
 		<meta name="keywords" content="duiken,leren duiken,padi,padi,duikschool,duikclub,duikcentrum,duikwinkel,duikshop,open water,advanced open water,openwater,ow,aow,rescue diver,efr,divemaster,owsi,mechelen,antwerpen,walem,nitrox,cursus,duikcursus,duikopleiding,nekker,de nekker,dan,dan,bare,green force,mares,ralf tech,seac sub,sealife,suunto,uwkinetics,underwater kinetics,uk" />
 		<meta name="verify-v1" content="1tjmsjmixkferm/5wdgpkjrv24bv+4ggch4v6eryymk=" />
 		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-		<script type="text/javascript" src="https://addthisevent.com/libs/1.6.0/ate.min.js"></script>
 		<link rel="icon" type="image/ico" href="favicon.ico" />
 		<link rel="stylesheet" type="text/css" href="opmaak.php" />
-                <link rel="stylesheet" type="text/css" href="addThisEvent.css" />
 		<?php
 			if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] != 'POST'){
 				if(strpos(filter_var($_SERVER['PHP_SELF'],FILTER_SANITIZE_URL),'contact.php') !== false or strpos($_SERVER['PHP_SELF'],'initiatie.php') !== false){
@@ -40,6 +38,20 @@ $ingelogd = isIngelogd();
 			}
 		?>
                 <link rel="stylesheet" type="text/css" href="addThisEvent.css" />
+                <script type="text/javascript" src="https://addthisevent.com/libs/ate-latest.min.js"></script>
+		<!-- AddThisEvent Settings -->
+		<script type="text/javascript">
+		addthisevent.settings({
+			license    : "replace-with-your-licensekey",
+			css        : false,
+			outlook    : {show:true, text:"Outlook Calendar"},
+			google     : {show:true, text:"Google Calendar"},
+			yahoo      : {show:true, text:"Yahoo Calendar"},
+			outlookcom : {show:true, text:"Outlook.com"},
+			appleical  : {show:true, text:"Apple iCalendar"},
+			dropdown   : {order:"appleical,google,outlook,outlookcom,yahoo"}
+		});
+		</script>
 	</head>
 	<body>
 	<div id="frame">

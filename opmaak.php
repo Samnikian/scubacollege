@@ -4,7 +4,7 @@
 ?>
 body{
 	height:100%;
-	background-image		: url('images/bg.gif');
+	background-image                        : url('images/bg.gif');
 	font-size				: 11px;
 	font-family				: verdana, arial, helvetica, sans-serif;
 	font-weight				: normal;
@@ -12,7 +12,7 @@ body{
 a,a:active,a:visited{
 	color					: #333;
 	font-weight				: normal;
-	text-decoration			: none 
+	text-decoration                         : none 
 }
 a:hover {
 	color					: #666;
@@ -414,9 +414,16 @@ fieldset form .bericht textarea{
     margin-top:15px;
     width: 90%;
 }
+#eventTable td{
+    border-bottom: 1px solid black;
+}
 #eventHeader{
     font-weight:bold;
 }
 .eventTitel{
     font-weight:bold;
+}
+.maandHeader{
+    width:100%;
+    text-align:center;
 }

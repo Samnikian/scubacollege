@@ -51,4 +51,3 @@ function IsDate( $Str ){
       return false;
   }   
 }
-?>

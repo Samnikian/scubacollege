@@ -33,8 +33,10 @@ class event {
         return $output;
     }
     protected function createAddToCalendarCode() {
-        $output = "<a href=\"http://scubacollege.be/kalender.php#" . $this->id . "\" title=\"Toevoegen aan je agenda\" class=\"addthisevent\">";
-        $output.= "Toevoegen aan je agenda!";
+        $output = '<div title="Toevoegen aan je agenda" class="addthisevent">';
+	$output.='<img src="images/addThisEvent.png" alt="Toevoegen aan je agenda" />';
+        //$output = "<a href=\"http://scubacollege.be/kalender.php#" . $this->id . "\" title=\"Toevoegen aan je agenda\" class=\"addthisevent\">";
+        //$output.= "Toevoegen aan je agenda!";
         $output.= "<span class=\"_start\">" . $this->formatTimeForEvent($this->begin) . "</span>";
         $output.= "<span class=\"_end\">" . $this->formatTimeForEvent($this->einde) . "</span>";
         $output.= "<span class=\"_zonecode\">" . EVENT_TIMEZONE . "</span>";
@@ -46,7 +48,8 @@ class event {
         $output.= "<span class=\"_facebook_event\">" . $this->fblink . "</span>"; //http://www.facebook.com/events/160427380695693
         $output.= "<span class=\"_all_day_event\">" . $this->heledag . "</span>";
         $output.= "<span class=\"_date_format\">" . EVENT_DATUMFORMAAT . "</span>";
-        $output.= "</a>";
+        $output.= '</div>';
+        //$output.= "</a>";
         return $output;
     }
     protected function formatTime($input){
@@ -55,5 +58,8 @@ class event {
     private function formatTimeForEvent($input){
         //06/18/2015 18:00
         return date("m\/d\/Y",$input);
+    }
+    public function getBegin(){
+        return $this->begin;
     }
 }
