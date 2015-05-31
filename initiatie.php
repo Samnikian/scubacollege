@@ -35,8 +35,6 @@ require_once('header.php');
     </p>
     <?php
     //unset($_SESSION['initiatie']);
-    require_once('includes/Contact.class.php');
-    require_once('includes/Initiatie.class.php');
     $initiatie = new Initiatie();
     echo $initiatie->getOutput();
     ?>

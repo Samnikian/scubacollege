@@ -12,6 +12,7 @@ if(DEBUG and $db->connect_errno > 0){
 	die('<span class="error">Unable to connect to database [' . $db->connect_error . ']</span>');
 }
 require_once('includes/functions.php');
+spl_autoload_register('autoLoader');
 $ingelogd = isIngelogd();
 ?>
 <!doctype html>
