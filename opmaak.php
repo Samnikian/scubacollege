@@ -27,7 +27,8 @@ a:hover {
 	text-align				: left;
 	background				: #fff;
 	border					: 1px solid #9999cc;
-	height:100%;
+	min-height:100%;
+        /*height:100%;*/
 }
 #contentheadermenu{
 	color					: #fff;
