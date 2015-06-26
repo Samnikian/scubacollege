@@ -1,5 +1,4 @@
 <?php
-
 require_once('header.php');
 ?>
 <img id="flowchart" alt="PADI Courses Flowchart" src="images/flowchart.jpg" usemap="#map1">

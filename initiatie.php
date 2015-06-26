@@ -2,7 +2,7 @@
 require_once('header.php');
 ?>
 <div id="initiatie">
-    <h1>Duikschool - Gratis Duikinitiatie</h1>
+    <h1>Duikschool - Duikinitiatie</h1>
     <p>
         <strong>Wat gaan we allemaal doen tijdens zo'n initiatie?</strong><br />
         Eerst geven we je een korte briefing over de gebruikte apparatuur en de basisprincipes van het 
@@ -13,7 +13,7 @@ require_once('header.php');
         <strong>Waar en wanneer gaan deze initiaties door?</strong><br />
         De initiaties gaan door in het Maanhoevebad, in Sint-Katelijne-Waver bij Mechelen op zaterdagmiddag 
         of op vrijdagavond in zwembad De Nekkerpool in Mechelen. Onderaan kan u een voorkeurstijdstip selecteren. 
-        U krijgt van ons nog een bevestiging per e-mail.<!--Kontich wegdoen?????-->
+        U krijgt van ons nog een bevestiging per e-mail.
     </p>
     <p>
         <strong>Zijn er vereisten?</strong><br />

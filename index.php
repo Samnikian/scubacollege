@@ -24,6 +24,7 @@ if($result = $db->query($query)){
 		}
 	}
 }
+$result->close();
 ?>
 <?php
 require_once('footer.php');

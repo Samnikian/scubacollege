@@ -1,10 +1,11 @@
 <?php
     header("Content-type: text/css; charset: UTF-8");
     header('Cache-control: must-revalidate');
+    
 ?>
 body{
 	height:100%;
-	background-image                        : url('images/bg.gif');
+	background-image                        : url('../images/bg.gif');
 	font-size				: 11px;
 	font-family				: verdana, arial, helvetica, sans-serif;
 	font-weight				: normal;
@@ -22,13 +23,15 @@ a:hover {
 #frame {
 	height:100%;
 	padding					: 0px;
-	margin					: 1px auto 1px auto;
+	margin					: 25px auto 25px auto;
 	width					: 1200px; /*1200*/
 	text-align				: left;
 	background				: #fff;
 	border					: 1px solid #9999cc;
 	min-height:100%;
         /*height:100%;*/
+        
+    box-shadow: 0 0 25px black;
 }
 #contentheadermenu{
 	color					: #fff;
@@ -41,7 +44,7 @@ a:hover {
 	font-size				: 1.1em;
 	font-weight				: bold;
 	padding					: 8px 3px 2px 3px;
-	background-image		: url('images/contentheadermenu.jpg');
+	background-image		: url('../images/contentheadermenu.jpg');
 	vertical-align			: middle;
 	height					: 23px;
 	text-align				: left;
@@ -86,14 +89,14 @@ a:hover {
 
 #contentheader {
 	height					: 130px;
-	background				: url('images/header.jpg') no-repeat 0px 0px;
+	background				: url('../images/header.jpg') no-repeat 0px 0px;
 }
 .boxkop {
 	border					: #999 1px solid;
 	padding-left			: 4px;
 	font-weight				: bold;
 	font-size				: 11px;
-	background-image		: url('images/boxkop.jpg');
+	background-image		: url('../images/boxkop.jpg');
 	color					: #fff;
 	height					: 18px
 }
@@ -108,7 +111,7 @@ a:hover {
 	margin-top				: 15px;
 	padding-left			: 8px;
 	font-weight				: bold;
-	background-image		: url('images/leftbox.jpg');
+	background-image		: url('../images/leftbox.jpg');
 	margin-bottom			: 5px;
 	height					: 18px;
 	color					: #fff;
@@ -203,7 +206,7 @@ p{
 	height					: 18px;
 	color					: #fff;
 	display:block;
-	background-image	: url('images/leftbox.jpg');
+	background-image	: url('../images/leftbox.jpg');
 }
 .nieuwsitem img{
 	max-width:100%;
@@ -413,7 +416,7 @@ fieldset form .bericht textarea{
 #eventTable{
     margin: 0 auto;
     margin-top:15px;
-    width: 90%;
+    width: 95%;
 }
 #eventTable td{
     border-bottom: 1px solid black;
@@ -427,4 +430,76 @@ fieldset form .bericht textarea{
 .maandHeader{
     width:100%;
     text-align:center;
+}
+.maandHeader a{
+    font-weight:bold;
+    color: black;
+}
+.maandHeader a:hover{
+    font-weight:bold;
+    color: black;
+}
+.eventWanneer{
+    width:17,5%;
+}
+.eventOmschijving{
+    width:45%;
+}
+.eventLocatie{
+    width:17,5%;
+}
+.eventMinNiveau{
+    width:17,5%;
+}
+.eventAddToCalendar img{
+    width:32px;
+    height:32px;
+}
+.adminButton{
+    width:24px;
+    height:24px;
+}
+#DiveEventForm{
+    margin: 15px auto 15px auto;
+    width:650px;
+}
+#DiveEventForm form{
+    width:100%;
+    margin: 10px auto 10px auto;
+}
+#DiveEventForm input{
+float:right;
+    display:inline-block;
+    width: 70%;
+    margin-bottom:10px;
+}
+#DiveEventForm textarea{
+float:right;
+    margin-left: 50px;
+    height:250px;
+    display:inline-block;
+    width: 70.5%;
+    margin-bottom:10px;
+}
+#DiveEventForm select{
+    display:inline-block;
+    width: 70.5%;
+    margin-bottom:10px;
+    -ms-box-sizing:content-box;
+    -moz-box-sizing:content-box;
+    -webkit-box-sizing:content-box; 
+    box-sizing:content-box;
+}
+#DiveEventForm label{
+float:left;
+    margin-left:25px;
+    display:inline-block;
+    width: 25%;
+    margin-bottom:10px;
+    text-align:left;
+}
+#DiveEventForm #submit{
+    margin-left:25px;
+    float:left;
+    width: 90.5%;
 }

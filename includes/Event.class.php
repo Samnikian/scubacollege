@@ -34,7 +34,7 @@ class event {
     }
     protected function createAddToCalendarCode() {
         $output = '<div title="Toevoegen aan je agenda" class="addthisevent">';
-	$output.='<img src="images/addThisEvent.png" alt="Toevoegen aan je agenda" />';
+	$output.='<img src="images/addThisEvent.png" title="Toevoegen aan je agenda" alt="Toevoegen aan je agenda" />';
         //$output = "<a href=\"http://scubacollege.be/kalender.php#" . $this->id . "\" title=\"Toevoegen aan je agenda\" class=\"addthisevent\">";
         //$output.= "Toevoegen aan je agenda!";
         $output.= "<span class=\"_start\">" . $this->formatTimeForEvent($this->begin) . "</span>";

@@ -2,139 +2,211 @@
 
 class DiveEventManager {
 
-    private $DiveEvents = array();
+    private $id, $begin, $einde, $omschrijving, $titel, $locatie, $fblink, $minniveau, $heledag, $captcha, $errormsg;
+    private $error = false;
+    private $login;
     private $db;
-    private $maanden = ['jan' => array(), 'feb' => array(), 'maa' => array(), 'apr' => array(), 'jun' => array(), 'jul' => array(), 'aug' => array(), 'sep' => array(), 'okt' => array(), 'nov' => array(), 'dec' => array()];
+    private $objOpleidingen;
 
     public function __construct(&$dbref) {
         $this->db = $dbref;
-        $this->loadEvents();
+        $this->login = isIngelogd();
+        $this->objOpleidingen = new Opleidingen($dbref);
     }
 
-    private function loadEvents() {
-        $query = 'SELECT * FROM `kalender` ORDER BY `begin`;';
-        try {
-            $result = $this->db->query($query);
-            while ($row = $result->fetch_assoc()) {
-                $tmpobj = new DiveEvent($row['id'], $row['begin'], $row['einde'], $row['omschrijving'], $row['titel'], $row['locatie'], $row['fblink'], $row['minniveau'], $row['heledag']);
-                $this->DiveEvents[] = $tmpobj;
+    public function addEventForm() {
+        $req = filter_input(INPUT_SERVER, 'REQUEST_METHOD', FILTER_SANITIZE_STRING);
+        if ($req == 'POST') {
+            $this->getDataFromPost();
+            $this->validateInput();
+            if ($this->error === true) {
+                $output = '';
+                $output.= $this->errormsg;
+                $output.=$this->getHTMLform();
+                return $output;
+            } else {
+                echo 'VERDER VERWERKEN';
             }
-            $result->close();
-        } catch (Exception $error) {
-            echo 'Er heeft zich een probleem voorgedaan, gelieve de webmaster te contacteren. Details: ' . $error->getMessage();
+        } else {
+            $this->getDataFromSession();
+            $this->validateInput();
+            return $this->getHTMLform();
+        }
+    }
+    private function nieuwEventOpslaan(){
+        $query = "INSERT INTO `kalender` (``,``,``,``,``) VALUES ('','','','','');";
+        $result = $this->db->query($query);
+        if(!$result){
+            return $this->getFailMessage();
+        }
+        else{
+            return $this->getSuccessMessage();
+        }
+    }
+    private function getFailMessage(){
+        header('refresh: 5; url=event.php');
+	echo '<p class="melding"><a href="event.php">U word binnen 5 seconden terug doorverwezen naar het formulier, klik hier indien dit niet gebeurd.</a></p>';
+    }
+    private function getSuccessMessage(){
+        header('refresh: 5; url=kalender.php');
+	echo '<p class="melding"><a href="kalender.php">De informatie werd met succes opgeslagen! <br />U word binnen 5 seconden doorverwezen naar de kalender, klik hier indien dit niet gebeurd.</a></p>';
+        unset($_SESSION['action']);
+    }
+    private function getDataFromPost() {
+        $this->id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_STRING);
+        $this->begin = filter_input(INPUT_POST, 'begin', FILTER_SANITIZE_STRING);
+        $this->einde = filter_input(INPUT_POST, 'einde', FILTER_SANITIZE_EMAIL);
+        $this->titel = filter_input(INPUT_POST, 'titel', FILTER_SANITIZE_STRING);
+        $this->omschrijving = filter_input(INPUT_POST, 'omschrijving', FILTER_SANITIZE_STRING);
+        $this->locatie = filter_input(INPUT_POST, 'locatie', FILTER_SANITIZE_STRING);
+        $this->fblink = filter_input(INPUT_POST, 'fblink', FILTER_SANITIZE_STRING);
+        $this->minniveau = filter_input(INPUT_POST, 'minniveau', FILTER_SANITIZE_STRING);
+        //$this->captcha = filter_input(INPUT_POST, 'g-recaptcha-response', FILTER_SANITIZE_STRING);
+    }
+
+    private function getDataFromSession() {
+        if (isset($_SESSION['addEvent'])) {
+            $des = unserialize($_SESSION['addEvent']);
+            $this->id = $des['id'];
+            $this->begin = $des['begin'];
+            $this->einde = $des['einde'];
+            $this->titel = $des['titel'];
+            $this->omschrijving = $des['omschrijving'];
+            $this->locatie = $des['locatie'];
+            $this->fblink = $des['fblink'];
+            $this->minniveau = $des['minniveau'];
+            unset($_SESSION['addEvent']);
+        } else {
+            $this->clearVars();
         }
     }
 
-    public function getSimpleHTMLTable() {
-        $output = '<table id="eventTable">';
-        $output.= '<tr id="eventHeader"><td>Wanneer</td><td>Omschrijving - Informatie</td><td>Locatie</td><td>Min Niveau</td></tr>';
-        foreach ($this->DiveEvents as $evnt) {
-            $output.= $evnt->getTrHTML(false);
-        }
-        $output.='</table>';
+    public function getHTMLform() {
+        $output = '<fieldset id="DiveEventForm"><legend>Kalender item toevoegen</legend><form action="event.php" method="POST">';
+        $output.= '<input type="hidden" value="' . $this->id . '" name="id" />';
+        $output.='<label for="begin">Begin</label><input type="text" id="begin" name="begin" value="' . $this->begin . '" required placeholder="16-07-2015" /><br />';
+        $output.='<label for="einde">Einde</label><input type="text" id="einde" name="einde" value="' . $this->einde . '" required placeholder="17-07-2015" /><br />';
+        $output.='<label for="titel">Titel</label><input type="text" id="titel" name="titel" value="' . $this->titel . '" required placeholder="Hier komt de Titel" /><br />';
+        $output.='<textarea id="omschrijving" name="omschrijving">' . $this->omschrijving . '</textarea><br />';
+        $output.='<label for="locatie">Locatie</label><input type="text" id="locatie" name="locatie" value="' . $this->locatie . '" required/><br />';
+        $output.='<label for="fblink">Facebook link</label><input type="text" id="fblink" name="fblink" value="' . $this->fblink . '" placeholder="https://www.facebook.com/events/1448283488824627/" /><br />';
+        $output.='<label for="minniveau">Minimum Niveau</label>';
+        $output.= $this->objOpleidingen->getOpleidingSelector();
+        $output.='<input type="submit" id="submit" value="Opslaan!" />';
+        $output.= '</form></fieldset>';
         return $output;
     }
 
-    public function getHTMLTable() {
-        $output = '';
-        $this->sorteerOpMaand();
-        foreach ($this->maanden as $key => $arrMaand) {
-            if (count($arrMaand) > 0) {
-                $output.= '<table id="eventTable">';
-                $output.= "<tr><td colspan=\"5\" class=\"maandHeader\"><h1>".$this->getMonthName($key)."</h1></td></tr>";
-                $output.= '<tr id="eventHeader"><td>Wanneer</td><td>Omschrijving - Informatie</td><td>Locatie</td><td colspan="2">Min Niveau</td></tr>';
-                $output.= $this->getHTMLMaand($arrMaand);
-                $output.='</table>';
-            }
-        }
-        return $output;
+    private function clearVars() {
+        $this->id = '';
+        $this->begin = '';
+        $this->einde = '';
+        $this->titel = '';
+        $this->omschrijving = '';
+        $this->locatie = '';
+        $this->fblink = '';
+        $this->minniveau = '';
     }
 
-    public function printEvents() {
-        echo '<pre>';
-        print_r($this->DiveEvents);
-        echo '</pre>';
+    private function validateInput() {
+        $this->error = false;
+        $this->errormsg = '<ul>';
+        $this->checkDatums();
+        $this->CheckBegin();
+        $this->CheckEinde();
+        $this->CheckTitle();
+        $this->CheckDescription();
+        $this->CheckLocation();
+        $this->CheckFblink();
+        $this->CheckCaptcha();
+        $this->CheckMinNiv();
+        $this->errormsg.= '</ul>';
     }
 
-    private function sorteerOpMaand() {
-        foreach ($this->DiveEvents as $DiveEvnt) {
-            $m = date('m', $DiveEvnt->getBegin());
-            switch ($m) {
-                case '01':
-                    $this->maanden['jan'][] = $DiveEvnt;
-                break;
-                case '02':
-                    $this->maanden['feb'][] = $DiveEvnt;
-                break;
-                case '03':
-                    $this->maanden['maa'][] = $DiveEvnt;
-                break;
-                case '04':
-                    $this->maanden['apr'][] = $DiveEvnt;
-                break;
-                case '05':
-                    $this->maanden['mei'][] = $DiveEvnt;
-                break;
-                case '06':
-                    $this->maanden['jun'][] = $DiveEvnt;
-                break;
-                case '07':
-                    $this->maanden['jul'][] = $DiveEvnt;
-                break;
-                case '08':
-                    $this->maanden['aug'][] = $DiveEvnt;
-                break;
-                case '09':
-                    $this->maanden['sep'][] = $DiveEvnt;
-                break;
-                case '10':
-                    $this->maanden['okt'][] = $DiveEvnt;
-                break;
-                case '11':
-                    $this->maanden['nov'][] = $DiveEvnt;
-                break;
-                case '12':
-                    $this->maanden['dec'][] = $DiveEvnt;
-                break;
+    private function checkCaptcha() {
+        
+    }
+
+    private function CheckMinNiv() {
+        if ($this->minniveau != 'geen') {
+            if (!is_numeric($this->minniveau)) {
+                $this->error = true;
+                $this->errormsg.= '<li>Je moet een minimum niveau selecteren.</li>';
             }
         }
     }
 
-    private function getHTMLMaand($arrMaand) {
-        $output = '';
-        foreach ($arrMaand as $evnt) {
-            $output.= $evnt->getTrHTML();
+    private function checkDatums() {
+        $arr_begin = explode('-', $this->begin);
+        $arr_einde = explode('-', $this->einde);
+        if (count($arr_begin) == 3 and count($arr_einde) == 3) {
+            $begin = mktime(0, 0, 0, $arr_begin[1], $arr_begin[0], $arr_begin[2]);
+            $einde = mktime(0, 0, 0, $arr_einde[1], $arr_einde[0], $arr_einde[2]);
+            if ($einde !== $begin or $einde < $begin) {
+                $this->error = true;
+                $this->errormsg.= '<li>Je einddatum moet later dan of gelijk aan je begindatum zijn.</li>';
+            }
+        } else {
+            $this->error = true;
+            $this->errormsg.= '<li>Je moet een geldige datum ingeven.</li>';
         }
-        return $output;
     }
 
-    private function getMonthName($key) {
-            switch ($key) {
-                case 'jan':
-                    return 'Januari';
-                case 'feb':
-                    return 'Februari';
-                case 'maa':
-                    return 'Maart';
-                case 'apr':
-                    return 'April';
-                case 'mei':
-                    return 'Mei';
-                case 'jun':
-                    return 'Juni';
-                case 'jul':
-                    return 'Juli';
-                case 'aug':
-                    return 'Augustus';
-                case 'sep':
-                    return 'September';
-                case 'okt':
-                    return 'Oktober';
-                case 'nov':
-                    return 'November';
-                case 'dec':
-                    return 'December';
+    private function CheckBegin() {
+        $arr = explode('-', $this->begin);
+        if (count($arr) == 3) {
+            if (!checkdate($arr[1], $arr[0], $arr[2])) {
+                $this->error = true;
+                $this->errormsg.= '<li>Je moet een geldige datum ingeven.</li>';
             }
+        } else {
+            $this->error = true;
+            $this->errormsg.= '<li>Je moet een geldige datum ingeven.</li>';
+        }
+    }
+
+    private function CheckEinde() {
+        $arr = explode('-', $this->einde);
+        if (count($arr) == 3) {
+            if (!checkdate($arr[1], $arr[0], $arr[2])) {
+                $this->error = true;
+                $this->errormsg.= '<li>Je moet een geldige datum ingeven.</li>';
+            }
+        } else {
+            $this->error = true;
+            $this->errormsg.= '<li>Je moet een geldige datum ingeven.</li>';
+        }
+    }
+
+    private function CheckTitle() {
+        if ($this->titel !== NULL and strlen($this->titel) < 4) {
+            $this->error = true;
+            $this->errormsg.= '<li>Je titel moet minstens 4 tekens bevatten.</li>';
+        }
+    }
+
+    private function CheckFblink() {
+        if ($this->fblink != '') {
+            $valid = filter_var($this->fblink, FILTER_VALIDATE_URL);
+            if (!$valid) {
+                $this->error = true;
+                $this->errormsg.= '<li>Je moet een geldige facebook link ingeven of het veld openlaten.</li>';
+            }
+        }
+    }
+
+    private function CheckLocation() {
+        if ($this->locatie !== NULL and strlen($this->locatie) < 4) {
+            $this->error = true;
+            $this->errormsg.= '<li>Je locatie moet minstens 4 tekens bevatten.</li>';
+        }
+    }
+
+    private function CheckDescription() {
+        if ($this->omschrijving !== NULL and strlen($this->omschrijving) < 10) {
+            $this->error = true;
+            $this->errormsg.= '<li>Je omschrijving moet minstens 10 tekens bevatten.</li>';
+        }
     }
 
 }
