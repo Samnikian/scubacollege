@@ -1,6 +1,6 @@
 <?php
-
-class Opleidingen {
+namespace Opleidingen;
+class Manager {
 
     private $db;
 
