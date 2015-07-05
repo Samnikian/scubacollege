@@ -20,7 +20,7 @@ if(isIngelogd() && isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD
 			$tekst = $nieuws['tekst'];
 			$prioriteit = $nieuws['prioriteit'];
 			$foto = $nieuws['foto'];
-			$action = 'nieuws_bewerken.php';
+			$postaction = 'nieuws_bewerken.php';
 			require_once('includes/nieuwsform.php');
 		}
 	}

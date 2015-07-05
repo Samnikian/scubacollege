@@ -1,7 +1,7 @@
 <?php
 require_once('header.php');
 if($_SERVER['REQUEST_METHOD'] !== 'POST'){
-	$action = 'nieuws_toevoegen.php';
+	$postaction = 'nieuws_toevoegen.php';
 	require_once('includes/nieuwsform.php');
 }
 else{

@@ -1,4 +1,4 @@
-<form id="nieuws" action="<?php if(isset($action)){echo $action;}?>" enctype="multipart/form-data" method="post" class="standaardform"> 
+<form id="nieuws" action="<?php if(isset($postaction)){echo $postaction;}?>" enctype="multipart/form-data" method="post" class="standaardform"> 
 <table>
 	<tr>
 		<td colspan="2"><h1>Een nieuws item toevoegen/aanpassen!</h1></td>

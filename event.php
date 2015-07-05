@@ -2,34 +2,36 @@
 
 require_once('header.php');
 
-//unset($_SESSION['addEvent']);
-$mgr = new DiveEventManager($db);
-if (isset($_GET['action'])) {
-    switch ($_GET['action']) {
-        case 'add':
-            $_SESSION['action'] = 'action';
-            echo $mgr->addEventForm();
-        break;
-        case 'edit':
-            $_SESSION['action'] = 'edit';
-            echo $mgr->editEventForm();
-        break;
-        case 'delete':
-            $_SESSION['action'] = 'delete';
-            echo $mgr->deleteEventForm();
-        break;
-        default:
-            echo $mgr->addEventForm();
-        break;
-    }
-}
-else{
-    if(isset($_POST['action'])){
-        echo $mgr->deleteEventForm();
-    }
-    else{
+$mgr = NULL;
+$getaction = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
+$postaction = filter_input(INPUT_POST, 'action', FILTER_SANITIZE_STRING);
+
+switch ($getaction) {
+    case 'add':
+        $mgr = new DiveEventAddManager($db);
         echo $mgr->addEventForm();
-    }
+        break;
+    case 'edit':
+        $mgr = new DiveEventEditManager($db);
+        echo $mgr->editEventForm();
+        break;
+    case 'delete':
+        $mgr = new DiveEventDeleteManager($db);
+        echo $mgr->deleteEventForm();
+        break;
+}
+switch ($postaction) {
+    case 'edit':
+        $mgr = new DiveEventEditManager($db);
+        echo $mgr->editEventForm();
+        break;
+    case 'delete':
+        $mgr = new DiveEventDeleteManager($db);
+        echo $mgr->deleteEventForm();
+        break;
+    default:
+        $mgr = new DiveEventAddManager($db);
+        echo $mgr->addEventForm();
+        break;
 }
 require_once('footer.php');
-?>

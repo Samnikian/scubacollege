@@ -16,9 +16,9 @@ class Opleidingen {
                 $query = 'SELECT naam FROM `Opleidingen` WHERE `id`=' . $id . ';';
                 $result = $this->db->query($query);
                 $opl = $result->fetch_assoc();
-                $output = $output['naam'];
+                $output = $opl['naam'];
             } catch (Exception $ex) {
-                $output = 'Error';
+                $output = 'Errors';
             } finally {
                 $result->close();
                 return $output;
@@ -26,17 +26,25 @@ class Opleidingen {
         }
     }
 
-    public function getOpleidingSelector() {
+    public function getOpleidingSelector($id = 0) {
         $output = '';
         $query = "SELECT `id`,`naam` FROM `Opleidingen`";
         $output.='<select name="minniveau">';
-        $output.='<option selected value="0">Nvt</option>';
-
+        if ($id == 0) {
+            $output.='<option selected value="0">Nvt</option>';
+        }else{
+            $output.='<option value="0">Nvt</option>';
+        }
         $result = $this->db->query($query);
         if ($result !== false) {
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    $output.="<option value=\"" . $row['id'] . "\">" . $row['naam'] . "</option>";
+                    if($id == $row['id']){
+                        $output.="<option selected value=\"" . $row['id'] . "\">" . $row['naam'] . "</option>";
+                    }
+                    else{
+                        $output.="<option value=\"" . $row['id'] . "\">" . $row['naam'] . "</option>";
+                    }
                 }
             }
         }
