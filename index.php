@@ -1,6 +1,6 @@
 <?php
 require_once('header.php');
-require_once "includes/JBBCode/Parser.php";
+
 $query = 'SELECT * FROM `nieuws` ORDER BY `aangemaakt` DESC,`prioriteit` ASC;';
 if($result = $db->query($query)){
 	if($result->num_rows > 0){

@@ -1,7 +1,7 @@
 <?php
 
 function autoLoader($class) {
-    $filename = DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.class.php';
+    $filename = DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
     //echo $filename;
     include $filename;
 }
