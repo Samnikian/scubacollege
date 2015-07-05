@@ -1,6 +1,6 @@
 <?php
-
-class DiveEvent extends Event {
+namespace DiveEvent;
+class Event extends \Event {
 
     private $minniveau,$minniveau_naam;
 

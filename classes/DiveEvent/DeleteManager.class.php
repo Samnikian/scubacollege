@@ -1,6 +1,6 @@
 <?php
-
-class DiveEventDeleteManager Extends DiveEventManager {
+namespace DiveEvent;
+class DeleteManager Extends Manager {
 
     public function __construct(&$dbref) {
         parent::__construct($dbref);

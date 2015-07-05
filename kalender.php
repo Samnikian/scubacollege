@@ -3,7 +3,7 @@
 require_once('header.php');
 require_once "includes/JBBCode/Parser.php";
 if (true) {
-    $obj = new DiveEventDisplay($db);
+    $obj = new DiveEvent\Display($db);
     echo $obj->getHTMLTable();
 } else {
     echo '<p class="melding">Er staat momenteel niets op de planning!</p>';

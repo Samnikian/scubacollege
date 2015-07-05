@@ -1,6 +1,6 @@
 <?php
-
-class DiveEventManager {
+namespace DiveEvent;
+class Manager {
 
     protected $id, $begin, $einde, $omschrijving, $titel, $locatie, $fblink, $minniveau, $heledag, $errormsg;
     protected $error = false;
@@ -11,7 +11,7 @@ class DiveEventManager {
     public function __construct(&$dbref) {
         $this->db = $dbref;
         $this->login = isIngelogd();
-        $this->objOpleidingen = new Opleidingen($dbref);
+        $this->objOpleidingen = new \Opleidingen($dbref);
     }
 
     protected function getFailMessage() {

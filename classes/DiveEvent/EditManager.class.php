@@ -1,12 +1,36 @@
 <?php
-
-class DiveEventAddManager Extends DiveEventManager {
+namespace DiveEvent;
+class EditManager Extends Manager {
 
     public function __construct(&$dbref) {
         parent::__construct($dbref);
     }
 
-    public function addEventForm() {
+    private function loadEvent() {
+        $query = "SELECT * FROM `kalender` WHERE `id`=" . $this->id . "";
+        try {
+            $result = $this->db->query($query);
+            if ($result !== false) {
+                $row = $result->fetch_assoc();
+                $this->begin = $this->timestampNaarDatum($row['begin']);
+                $this->einde = $this->timestampNaarDatum($row['einde']);
+                $this->omschrijving = $row['omschrijving'];
+                $this->titel = $row['titel'];
+                $this->locatie = $row['locatie'];
+                $this->fblink = $row['fblink'];
+                $this->minniveau = $row['minniveau'];
+                $this->heledag = $row['heledag'];
+                $result->close();
+            } else {
+                echo $this->db->error;
+            }
+        } catch (Exception $error) {
+            
+        }
+//echo 'Er heeft zich een probleem voorgedaan, gelieve de webmaster te contacteren. Details: ' . $error->getMessage();
+    }
+
+    public function editEventForm() {
         $req = filter_input(INPUT_SERVER, 'REQUEST_METHOD', FILTER_SANITIZE_STRING);
         if ($req == 'POST') {
             $this->getDataFromPost();
@@ -17,16 +41,20 @@ class DiveEventAddManager Extends DiveEventManager {
                 $output.=$this->getHTMLform();
                 return $output;
             } else {
-                return $this->nieuwEventOpslaan();
+                return $this->eventUpdaten();
             }
         } else {
+            $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+            if ($id !== false) {
+                $this->id = $id;
+                $this->loadEvent();
+            }
             return $this->getHTMLform();
         }
     }
 
-    private function nieuwEventOpslaan() {
-        $query = "INSERT INTO `kalender` (`begin`,`einde`,`omschrijving`,`titel`,`locatie`,`fblink`,`heledag`,`minniveau`,`minniveau_naam`)";
-        $query.= "VALUES ('" . $this->datumNaarTimeStamp($this->begin) . "','" . $this->datumNaarTimeStamp($this->einde) . "','" . $this->omschrijving . "','" . $this->titel . "','" . $this->locatie . "','" . $this->fblink . "','" . $this->heledag . "','" . $this->minniveau . "','" . $this->objOpleidingen->idNaarNaam($this->minniveau) . "');";
+    private function eventUpdaten() {
+        $query = "UPDATE `kalender` SET `begin`='" . $this->datumNaarTimeStamp($this->begin) . "',`einde`='" . $this->datumNaarTimeStamp($this->einde) . "',`omschrijving`='" . $this->omschrijving . "',`titel`='" . $this->titel . "',`locatie`='" . $this->locatie . "',`fblink`='" . $this->fblink . "',`heledag`='" . $this->heledag . "',`minniveau`=" . $this->minniveau . ",`minniveau_naam`='" . $this->objOpleidingen->idNaarNaam($this->minniveau) . "' WHERE `id`=" . $this->id . ";";
         $result = $this->db->query($query);
         if (!$result) {
             return $this->getFailMessage();
@@ -47,8 +75,9 @@ class DiveEventAddManager Extends DiveEventManager {
     }
 
     public function getHTMLform() {
-        $output = '<fieldset id="DiveEventForm"><legend>Kalender item toevoegen</legend><form action="event.php" method="POST">';
+        $output = '<fieldset id="DiveEventForm"><legend>Kalender item aanpassen</legend><form action="event.php" method="POST">';
         $output.= '<input type="hidden" value="' . $this->id . '" name="id" />';
+        $output.= '<input type="hidden" value="edit" name="action" />';
         $output.='<label for="begin">Begin</label><input type="text" id="begin" name="begin" value="' . $this->begin . '" required placeholder="16-07-2015" /><br />';
         $output.='<label for="einde">Einde</label><input type="text" id="einde" name="einde" value="' . $this->einde . '" required placeholder="17-07-2015" /><br />';
         $output.='<label for="titel">Titel</label><input type="text" id="titel" name="titel" value="' . $this->titel . '" required placeholder="Hier komt de Titel" /><br />';
@@ -56,7 +85,7 @@ class DiveEventAddManager Extends DiveEventManager {
         $output.='<label for="locatie">Locatie</label><input type="text" id="locatie" name="locatie" value="' . $this->locatie . '" required/><br />';
         $output.='<label for="fblink">Facebook link</label><input type="text" id="fblink" name="fblink" value="' . $this->fblink . '" placeholder="https://www.facebook.com/events/1448283488824627/" /><br />';
         $output.='<label for="minniveau">Minimum Niveau</label>';
-        $output.= $this->objOpleidingen->getOpleidingSelector();
+        $output.= $this->objOpleidingen->getOpleidingSelector($this->id);
         $output.='<input type="submit" id="submit" value="Opslaan!" />';
         $output.= '</form></fieldset>';
         return $output;

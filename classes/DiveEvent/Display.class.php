@@ -1,6 +1,6 @@
 <?php
-
-class DiveEventDisplay {
+namespace DiveEvent;
+class Display {
 
     private $login;
     private $DiveEvents = array();
@@ -18,7 +18,7 @@ class DiveEventDisplay {
         try {
             $result = $this->db->query($query);
             while ($row = $result->fetch_assoc()) {
-                $tmpobj = new DiveEvent($row['id'], $row['begin'], $row['einde'], $row['omschrijving'], $row['titel'], $row['locatie'], $row['fblink'], $row['minniveau'],$row['minniveau_naam'], $row['heledag']);
+                $tmpobj = new Event($row['id'], $row['begin'], $row['einde'], $row['omschrijving'], $row['titel'], $row['locatie'], $row['fblink'], $row['minniveau'],$row['minniveau_naam'], $row['heledag']);
                 $this->DiveEvents[] = $tmpobj;
             }
             $result->close();
