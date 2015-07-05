@@ -24,7 +24,12 @@ if (isset($_GET['action'])) {
     }
 }
 else{
-    echo $mgr->addEventForm();
+    if(isset($_POST['action'])){
+        echo $mgr->deleteEventForm();
+    }
+    else{
+        echo $mgr->addEventForm();
+    }
 }
 require_once('footer.php');
 ?>

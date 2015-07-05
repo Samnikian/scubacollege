@@ -8,11 +8,29 @@ class Opleidingen {
         $this->db = $database;
     }
 
+    public function idNaarNaam($id) {
+        if ($id == 0) {
+            return 'Nvt';
+        } else {
+            try {
+                $query = 'SELECT naam FROM `Opleidingen` WHERE `id`=' . $id . ';';
+                $result = $this->db->query($query);
+                $opl = $result->fetch_assoc();
+                $output = $output['naam'];
+            } catch (Exception $ex) {
+                $output = 'Error';
+            } finally {
+                $result->close();
+                return $output;
+            }
+        }
+    }
+
     public function getOpleidingSelector() {
         $output = '';
         $query = "SELECT `id`,`naam` FROM `Opleidingen`";
-        $output.='<select>';
-        $output.='<option name="minniveau" selected value="geen">Geen</option>';
+        $output.='<select name="minniveau">';
+        $output.='<option selected value="0">Nvt</option>';
 
         $result = $this->db->query($query);
         if ($result !== false) {

@@ -18,7 +18,7 @@ class DiveEventDisplay {
         try {
             $result = $this->db->query($query);
             while ($row = $result->fetch_assoc()) {
-                $tmpobj = new DiveEvent($row['id'], $row['begin'], $row['einde'], $row['omschrijving'], $row['titel'], $row['locatie'], $row['fblink'], $row['minniveau'], $row['heledag']);
+                $tmpobj = new DiveEvent($row['id'], $row['begin'], $row['einde'], $row['omschrijving'], $row['titel'], $row['locatie'], $row['fblink'], $row['minniveau'],$row['minniveau_naam'], $row['heledag']);
                 $this->DiveEvents[] = $tmpobj;
             }
             $result->close();
@@ -31,7 +31,7 @@ class DiveEventDisplay {
         $output = '<table id="eventTable">';
         $output.= '<tr id="eventHeader"><td>Wanneer</td><td>Omschrijving - Informatie</td><td>Locatie</td><td>Min Niveau</td><td>&nbsp;</td></tr>';
         foreach ($this->DiveEvents as $evnt) {
-            $output.= $evnt->getTrHTML(false);
+            $output.= $evnt->getTrHTML($this->db,false);
         }
         $output.='</table>';
         return $output;
@@ -39,24 +39,29 @@ class DiveEventDisplay {
 
     public function getHTMLTable() {
         $output = '';
-        $this->sorteerOpMaand();
-        $output.= '<table id="eventTable">';
-        foreach ($this->maanden as $key => $arrMaand) {
-            if (count($arrMaand) > 0) {
-                if ($this->hasEditRights()) {
-                    $output.= "<tr><td colspan=\"6\" class=\"maandHeader\"><a name=\"" . $this->getMonthName($key) . "\"><h1>" . $this->getMonthName($key) . "</a></h1></td></tr>";
-                    $output.= '<tr id="eventHeader">';
-                    $output.= '<td>&nbsp</td>';
-                } else {
-                    $output.= "<tr><td colspan=\"5\" class=\"maandHeader\"><a name=\"" . $this->getMonthName($key) . "\"><h1>" . $this->getMonthName($key) . "</a></h1></td></tr>";
-                    $output.= '<tr id="eventHeader">';
+        if (count($this->DiveEvents) > 0) {
+            $this->sorteerOpMaand();
+            $output.= '<table id="eventTable">';
+            foreach ($this->maanden as $key => $arrMaand) {
+                if (count($arrMaand) > 0) {
+                    if ($this->hasEditRights()) {
+                        $output.= "<tr><td colspan=\"6\" class=\"maandHeader\"><a name=\"" . $this->getMonthName($key) . "\"><h1>" . $this->getMonthName($key) . "</a></h1></td></tr>";
+                        $output.= '<tr id="eventHeader">';
+                        $output.= '<td>&nbsp</td>';
+                    } else {
+                        $output.= "<tr><td colspan=\"5\" class=\"maandHeader\"><a name=\"" . $this->getMonthName($key) . "\"><h1>" . $this->getMonthName($key) . "</a></h1></td></tr>";
+                        $output.= '<tr id="eventHeader">';
+                    }
+                    $output.= '<td class="eventWanneer">Wanneer</td><td class="eventOmschrijving">Omschrijving - Informatie</td><td class="eventLocatie">Locatie</td><td class="eventMinNiveau">Min Niveau</td><td>&nbsp;</td></tr>';
+                    $output.= $this->getHTMLMaand($arrMaand);
                 }
-                $output.= '<td class="eventWanneer">Wanneer</td><td class="eventOmschrijving">Omschrijving - Informatie</td><td class="eventLocatie">Locatie</td><td class="eventMinNiveau">Min Niveau</td><td>&nbsp;</td></tr>';
-                $output.= $this->getHTMLMaand($arrMaand);
             }
+            $output.='</table>';
+            return $output;
         }
-        $output.='</table>';
-        return $output;
+        else{
+            return '<p class="melding">Er staat momenteel niets op de agenda, kom later nog eens terug!</p>';
+        }
     }
 
     private function hasEditRights() {

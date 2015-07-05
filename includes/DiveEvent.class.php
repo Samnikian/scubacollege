@@ -2,10 +2,11 @@
 
 class DiveEvent extends Event {
 
-    private $minniveau;
+    private $minniveau,$minniveau_naam;
 
-    public function __construct($id, $begin, $einde, $omschrijving, $titel, $locatie, $fblink, $minniveau, $heledag = false) {
+    public function __construct($id, $begin, $einde, $omschrijving, $titel, $locatie, $fblink, $minniveau,$minniveau_naam, $heledag = false) {
         $this->minniveau = $minniveau;
+        $this->minniveau_naam = $minniveau_naam;
         parent::__construct($id, $begin, $einde, $omschrijving, $titel, $locatie, $fblink, $heledag);
     }
 
@@ -19,12 +20,13 @@ class DiveEvent extends Event {
         }
         $output.= '<td class="eventOmschijving"><span class="eventTitel">' . $this->titel . '</span><br />' . $this->omschrijving . '</td>';
         $output.= '<td class="eventLocatie">' . $this->locatie . '</td>';
-        $output.= '<td class="eventMinNiveau">' . $this->minniveau . '</td>';
+        $output.= '<td class="eventMinNiveau">' . $this->minniveau_naam . '</td>';
         $output.= '<td class="eventAddToCalendar">' . parent::createAddToCalendarCode() . '</td>';
         $output.= '</tr>';
 
         return $output;
     }
+
     private function getAdminButton($login) {
         $html = '<td><a href="event.php?action=edit&id=' . $this->id . '"><img class="adminButton" src="images/bewerken.png" alt="Bewerken" title="Bewerken" />';
         $html.= '</a><a href="event.php?action=delete&id=' . $this->id . '"><img class="adminButton" src="images/verwijderen.png" alt="Verwijderen" title="Verwijderen" /></a></td>';
