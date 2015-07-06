@@ -1,10 +1,12 @@
 <?php
+
 namespace DiveEvent;
+
 class Event extends \Event {
 
-    private $minniveau,$minniveau_naam;
+    private $minniveau, $minniveau_naam;
 
-    public function __construct($id, $begin, $einde, $omschrijving, $titel, $locatie, $fblink, $minniveau,$minniveau_naam, $heledag = false) {
+    public function __construct($id, $begin, $einde, $omschrijving, $titel, $locatie, $fblink, $minniveau, $minniveau_naam, $heledag = false) {
         $this->minniveau = $minniveau;
         $this->minniveau_naam = $minniveau_naam;
         parent::__construct($id, $begin, $einde, $omschrijving, $titel, $locatie, $fblink, $heledag);
@@ -18,7 +20,10 @@ class Event extends \Event {
         } else {
             $output.= '<td class="eventWanneer">Van ' . $this->formatTime($this->begin) . ' tot ' . $this->formatTime($this->einde) . '';
         }
-        $output.= '<td class="eventOmschijving"><span class="eventTitel">' . $this->titel . '</span><br />' . $this->omschrijving . '</td>';
+        $parser = new \JBBCode\Parser();
+        $parser->addCodeDefinitionSet(new \JBBCode\DefaultCodeDefinitionSet());
+        $parser->parse($this->omschrijving);
+        $output.= '<td class="eventOmschijving"><span class="eventTitel">' . $this->titel . '</span><br />' .$parser->getAsHtml(). '</td>';
         $output.= '<td class="eventLocatie">' . $this->locatie . '</td>';
         $output.= '<td class="eventMinNiveau">' . $this->minniveau_naam . '</td>';
         $output.= '<td class="eventAddToCalendar">' . parent::createAddToCalendarCode() . '</td>';

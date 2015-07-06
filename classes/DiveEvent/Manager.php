@@ -11,7 +11,7 @@ class Manager {
     public function __construct(&$dbref) {
         $this->db = $dbref;
         $this->login = isIngelogd();
-        $this->objOpleidingen = new Opleidingen\Manager($dbref);
+        $this->objOpleidingen = new \Opleidingen\Manager($dbref);
     }
 
     protected function getFailMessage() {
