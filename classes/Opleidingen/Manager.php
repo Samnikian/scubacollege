@@ -16,7 +16,7 @@ class Manager {
             return 'Nvt';
         } else {
             try {
-                $query = 'SELECT naam FROM `Opleidingen` WHERE `id`=' . $id . ';';
+                $query = 'SELECT naam FROM `opleidingen` WHERE `id`=' . $id . ';';
                 $result = $this->db->query($query);
                 $opl = $result->fetch_assoc();
                 $output = $opl['naam'];
@@ -104,12 +104,12 @@ class Manager {
 
     protected function getFailMessage() {
         header('refresh: 5; url=event.php');
-        echo '<p class="melding"><a href="opleidingen.php">Er heeft zich een probleem voorgedaan. U word binnen 5 seconden terug doorverwezen naar het formulier, klik hier indien dit niet gebeurd.</a></p>';
+        echo '<p class="melding"><a href="opleidingen.php?action=list">Er heeft zich een probleem voorgedaan. U word binnen 5 seconden terug doorverwezen naar het formulier, klik hier indien dit niet gebeurd.</a></p>';
     }
 
     protected function getSuccessMessage() {
         header('refresh: 5; url=kalender.php');
-        echo '<p class="melding"><a href="opleidingen.php">De informatie werd met succes aangepast! <br />U word binnen 5 seconden doorverwezen naar de kalender, klik hier indien dit niet gebeurd.</a></p>';
+        echo '<p class="melding"><a href="opleidingen.php?action=list">De informatie werd met succes aangepast! <br />U word binnen 5 seconden doorverwezen naar de kalender, klik hier indien dit niet gebeurd.</a></p>';
         unset($_SESSION['action']);
     }
 

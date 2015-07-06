@@ -49,7 +49,7 @@ class Admin {
             case 'edit':
                 $obj = new EditManager($this->db);
                 return $obj->getEditForm();
-            case 'delete':
+            case 'delete_confirmed':
                 $obj = new DeleteManager($this->db);
                 return $obj->getDeleteForm();
             default:
