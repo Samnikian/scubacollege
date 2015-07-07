@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Machine: 127.0.0.1
--- Gegenereerd op: 28 mei 2015 om 14:38
+-- Gegenereerd op: 07 jul 2015 om 08:49
 -- Serverversie: 5.6.17
 -- PHP-versie: 5.5.12
 
@@ -36,16 +36,19 @@ CREATE TABLE IF NOT EXISTS `kalender` (
   `fblink` varchar(250) NOT NULL,
   `heledag` varchar(5) NOT NULL,
   `minniveau` int(5) NOT NULL,
+  `minniveau_naam` varchar(250) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
--- Gegevens worden geÃ«xporteerd voor tabel `kalender`
+-- Gegevens worden geëxporteerd voor tabel `kalender`
 --
 
-INSERT INTO `kalender` (`id`, `begin`, `einde`, `omschrijving`, `titel`, `locatie`, `fblink`, `heledag`, `minniveau`) VALUES
-(1, '1432816511', '1432816511', 'Dit is een test omschrijving', 'Dit is een test evenement', 'Nekkerpool', '', '1', 0),
-(2, '1432816511', '1432816511', 'Dit is een test omschrijving', 'Dit is een test evenement', 'Nekkerpool', '', '1', 0);
+INSERT INTO `kalender` (`id`, `begin`, `einde`, `omschrijving`, `titel`, `locatie`, `fblink`, `heledag`, `minniveau`, `minniveau_naam`) VALUES
+(1, '1432764000', '1432764000', 'Dit is een [u]test[/u] omschrijving', 'Dit is een test evenement', 'Nekkerpool', '', '', 0, 'Nvt'),
+(3, '1435183200', '1435183200', 'Dit is nogmaals een test', 'Klein testje', 'Mortelmans Computing, Mechelseweg, Kapelle-op-den-Bos, BelgiÃ«', 'https://www.facebook.com/events/1448283488824627/', '', 0, 'Nvt'),
+(5, '1435183200', '1435183200', 'Dit is nogmaals een test', 'Klein testje', 'De Nekker, Mechelen', 'https://www.facebook.com/events/1448283488824627/', '', 3, 'Advanced Open Water Diver'),
+(6, '1436997600', '1436997600', 'Omschrijving blablabla', 'Test titel', 'Provinciaal Sport & Recreatiecentrum, Nekkerspoel-Borcht, Mechelen, BelgiÃ«', '', '', 0, 'Nvt');
 
 -- --------------------------------------------------------
 
@@ -67,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `nieuws` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
--- Gegevens worden geÃ«xporteerd voor tabel `nieuws`
+-- Gegevens worden geëxporteerd voor tabel `nieuws`
 --
 
 INSERT INTO `nieuws` (`id`, `titel`, `tekst`, `foto`, `wie`, `aangemaakt`, `gewijzigd`, `prioriteit`) VALUES
@@ -76,6 +79,29 @@ INSERT INTO `nieuws` (`id`, `titel`, `tekst`, `foto`, `wie`, `aangemaakt`, `gewi
 (5, 'NIEUW: PADI Propulsion Vehicle Specialty', 'Laat je voorttrekken door een scooter, spaar lucht en energie, en ga op verkenning naar verder gelegen duikspots. Een zeer plezierige PADI specialty!\r\n\r\n[url=http://www.google.be]Voor meer info klik hier[/url]', 'geen', 1, '1420457020', '1420457020', 1),
 (14, 'PADI Oxygen Provider Cursus', 'Een zeer interessante cursus voor elke duiker[url=test]Voor meer info klik hier[/url]', 'geen', 1, '1420458643', '1420458643', 1),
 (15, 'OPEN WATER DIVER CURSUS', 'PROMOTIE : nu aan [b]369Ã¢â€šÂ¬[/b]\r\nInclusief gebruik duikmateriaal,Brevetterings-kosten en PADI Open Water DVD kit. GRATIS Lidmaatschap van onze duikclub tot eind 2015!! Extra korting bij inschrijving met 2 of meerdere personen!! Cursus start elke week\r\n\r\n[url=http://scubacollege.be?t=test]Voor meer info klik hier[/url]', 'geen', 0, '1420473696', '1431628398', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `opleidingen`
+--
+
+CREATE TABLE IF NOT EXISTS `opleidingen` (
+  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `naam` varchar(250) NOT NULL,
+  `afkorting` varchar(50) NOT NULL,
+  `omschrijving` text NOT NULL,
+  `minniveau` int(5) NOT NULL,
+  `minniveau_naam` varchar(250) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `opleidingen`
+--
+
+INSERT INTO `opleidingen` (`id`, `naam`, `afkorting`, `omschrijving`, `minniveau`, `minniveau_naam`) VALUES
+(3, 'Advanced Open Water Diver', 'AOWD', 'De vervolgcursus op de open water diver', 0, 'Nvt');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
