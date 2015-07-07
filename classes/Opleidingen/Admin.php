@@ -46,7 +46,7 @@ class Admin {
             case 'add':
                 $obj = new AddManager($this->db);
                 return $obj->getAddForm();
-            case 'edit':
+            case 'edit_confirmed':
                 $obj = new EditManager($this->db);
                 return $obj->getEditForm();
             case 'delete_confirmed':
