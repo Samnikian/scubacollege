@@ -7,7 +7,7 @@ define('CONTACT_MAIL' , 'info@mortelmans.org');
 define('SMTP_HOST','send.one.com');
 define('SMTP_PORT','465');
 define('SMTP_USER','info@mortelmans.org');
-define('SMTP_PASSWORD','Samnikian007');
+define('SMTP_PASSWORD','cef979c87dde47307934e1860dd4d301');
 define('MAIL_FROM_ADDRESS', 'info@mortelmans.org');//website@scubacollege.be
 define('MAIL_FROM_NAME','Scubacollege');
 define('MAIL_CONTACT_SUBJECT','Bericht via scubacollege.be contactformulier.');
@@ -24,8 +24,8 @@ define('DATABASE','scubacollege');
 
 define('GUEST',0);
 define('USER',1);
-define('INSTRUCTOR',2);
-define('STAFF',3);
+define('INSTRUCTOR',2);//staff
+define('STAFF',3);//planning
 define('ADMIN',4);
 
 define('EVENT_ORGANISATOR','Scubacollege');

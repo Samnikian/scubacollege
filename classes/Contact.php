@@ -131,9 +131,7 @@ class Contact {
     }
 
     protected function configureMailer() {
-        require_once('includes/PHPMailer.class.php');
-        require_once('includes/SMTP.class.php');
-        $this->mailer = new PHPMailer();
+        $this->mailer = new \PHPMailer();
         $this->mailer->IsSMTP();
         if (DEBUG) {
             $this->mailer->SMTPDebug = 2;
