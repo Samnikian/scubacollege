@@ -24,7 +24,7 @@ a:hover {
 	height:100%;
 	padding					: 0px;
 	margin					: 25px auto 25px auto;
-	width					: 74.999%; /*1200*/
+	width					: 75%; /*1200*/
         max-width:1200px;
 	text-align				: left;
 	background				: #fff;
@@ -40,21 +40,27 @@ a:hover {
 	width					: 16.66666667%;/*200px*/
 	min-height				: 100%;
 	padding					: 0;
+        border-right			: 1px solid #9999cc;
 
 }
 .menucenter{
 	text-align				: center;
 }
+#socialmediaklein{
+    display:block;
+}
+#socialmediagroot{
+    display:none;
+}
 #contentcenter{
 	background				: #fff;
 	float					: right;
-	width					: 83.1%;/*813   67.75%*//*613*/185+813=998 989/1200*100=83%
+	width					: 83%;/*813   67.75%*//*613*/185+813=998 989/1200*100=83%
 	padding					: 0;
 	min-height				: 500px;
-	border-left				: 1px solid #9999cc;
-	border-right			: 1px solid #9999cc;
+	/*border-left				: 1px solid #9999cc;*/
 }
-#contentright{
+/*#contentright{
 	text-align				: center;
 	background				: #fff;
 	float					: right;
@@ -62,7 +68,7 @@ a:hover {
 	min-height				: 100%;
 	padding					: 0;
 	
-}
+}*/
 #contentheadermenu{
 	color					: #fff;
 }
@@ -112,19 +118,30 @@ a:hover {
 	border-top				: 1px solid #9999cc;
 }
 .dan{
+margin-left:-10%;
+        display:block;
+        max-width:100%;
 	border					: 0px solid black;
-	width					: 100px;
-	height					: 190px;
+	width					: 100%;
+        max-width:100%;
+        margin-bottom:5%px;
 }
 .padi,.padi:hover{
+margin-left:-10%;
+display:block;
 	color					: #333;
 	text-decoration			: none;
 	font-weight				: normal;
 	border					: 0px solid black;
-	width					: 150px;
-	height					: 206px;
+	width					: 100%;
 	display					: inline-block;
+        max-width:100%;
+        margin-bottom:5%px;
 }
+.padi img,.dan img{
+max-width:75%;
+}
+
 hr{
 	width					: 90%;
 }
@@ -229,9 +246,8 @@ p{
 }
 #loginform input{
 	margin: 2.5px;
+        max-width:85%;
 }
-
-
 #contact{
 	text-align:center;
 }
@@ -493,58 +509,29 @@ float:left;
     float:left;
     width: 90.5%;
 }
-@media screen and (max-width: 960px) {
-.boxkopl,.boxkoplboven{
-    padding:15px;
-}
-.nieuwsitem img{
-	width:100%;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-}
-body{
-	height:100%;
-	background-image                        : url('../images/bg.gif');
-	font-size				: 1em;
-	font-family				: verdana, arial, helvetica, sans-serif;
-	font-weight				: normal;
-}
-#contentheader {
-	height					: 130px;
-	background				: url('../images/header.jpg') no-repeat 0px 0px;
-}
-#frame {
-        display:flex;
-        flex-direction: row;
-        flex-wrap:wrap;
-	height:100%;
-	padding					: 0px;
-	margin					: 25px auto 25px auto;
-	width					: 100%; /*1200*/
-        max-width:1200px;
-	text-align				: left;
-	background				: #fff;
-	border					: 1px solid #9999cc;
-	min-height:100%;
-        /*height:100%;*/
-        box-shadow: 0 0 25px black;
-}
-#contentleft{
-	background				: #fff;
-	width					: 100%;/*200px*/
-	padding					: 0;
-}
+@media screen and (min-width: 1500px) {
 #contentcenter{
 	background				: #fff;
-	float					: top;
-	width					: 100%;/*813*//*613*/
+	float					: right;
+	width					: 83.175%;/*813   67.75%*//*613*/185+813=998 989/1200*100=83%
 	padding					: 0;
+	min-height				: 500px;
 }
-#contentright{
-	text-align				: center;
+@media screen and (min-width: 2000px) {
+#contentcenter{
 	background				: #fff;
-	width					: 100%;/*185px*/
+	float					: right;
+	width					: 83%;/*813   67.75%*//*613*/185+813=998 989/1200*100=83%
 	padding					: 0;
+	min-height				: 500px;
 }
+#socialmediaklein{
+    display:none;
+}
+#socialmediagroot{
+    display:block;
+}
+}
+#immodyck img{
+    max-width:250px;
 }

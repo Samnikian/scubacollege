@@ -56,9 +56,8 @@
                     <div class="menucenter">
                         <a class="padi" href="http://www.padi.com/scuba/?LangType=1043" target="_blank"><img src="images/padi.gif">
                         <br />RF S-799086</a>
-                        <hr>
-                        <a href="https://www.daneurope.org/home" target="_blank"><img class="dan" src="images/dan.jpg"></a>
-                        <hr>
+                        
+                        <a href="https://www.daneurope.org/home" class="dan" target="_blank"><img  src="images/dan.jpg"></a>
                         <!--<br clear="all">-->
                     </div>
 		</div>

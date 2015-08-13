@@ -27,6 +27,13 @@ require_once('header.php');
 			</a>
 		</td>
 	</tr>
+        <tr>
+                    <td>
+                        <a id="immodyck" target="_blank" href="http://www.immodyck.be">
+                            <img src="images/immodyck-logo-web.png" alt="Immo Dyck" id="logo"><br />www.immodyck.be
+                        </a>
+                    </td>
+        </tr>
 </table>
 <?php
 require_once('footer.php');

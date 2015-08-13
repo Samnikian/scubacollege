@@ -1,0 +1,104 @@
+/* 
+    Created on : 13-aug-2015, 19:51:50
+    Author     : Niels
+*/
+.boxkopl,.boxkoplboven{
+    padding                             : 15px;
+}
+.nieuwsitem img{
+    width                               : 100%;
+    display                             : block;
+    margin-left                         : auto;
+    margin-right                        : auto;
+}
+body{
+    height:100%;
+    background-image                    : url('../images/bg.gif');
+    font-size				: 1em;
+    font-family				: verdana, arial, helvetica, sans-serif;
+    font-weight				: normal;
+}
+#contentheader {
+    height                              : 100px;
+    width                               : 100%;
+    background				: url('../images/header_small.png') no-repeat 0px 0px;
+    background-size                     : contain;
+}
+#socialmediaklein{
+    display:block;
+}
+#socialmediagroot{
+    display:none;
+}
+#frame {
+    display                             : flex;
+    flex-direction                      : row;
+    flex-wrap                           : wrap;
+    height                              : 100%;
+    padding				: 0px;
+    margin				: 25px auto 25px auto;
+    width				: 100%; /*1200*/
+    max-width                           : 1200px;
+    text-align				: left;
+    background				: #fff;
+    border				: 1px solid #9999cc;
+    min-height                          :100%;
+    box-shadow                          : 0 0 25px black;
+}
+#contentleft{
+    background				: #fff;
+    width                               : 100%;/*200px*/
+    padding				: 0;
+}
+#contentcenter{
+    background				: #fff;
+    float				: top;
+    width				: 100%;/*813*//*613*/
+    padding				: 0;
+}
+#contentright{
+    text-align				: center;
+    background				: #fff;
+    width				: 100%;/*185px*/
+    padding				: 0;
+}
+
+
+
+
+.nieuwsitem{
+    margin:0px;
+    margin-left:-15px;
+    width:100%;
+    padding:15px;
+    padding-right:0px;
+}
+.titel{
+    height					: 18px;
+    color					: #fff;
+    display:block;
+    background-image	: url('../images/leftbox.jpg');
+}
+.nieuwsitem img{
+    max-width:100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.rechts{
+    font-size:0.65em;
+    display:inline;
+    text-align:right;
+    
+}
+.links{
+    margin-right:15px;
+    font-size:0.65em;
+    display:inline;
+    text-align:left;
+    padding:0.5%;
+}
+.nieuwsitemtekst{
+    display:inline-block;
+    padding:7px;
+}
