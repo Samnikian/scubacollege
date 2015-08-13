@@ -1,6 +1,7 @@
 <?php
 require_once('header.php');
 ?>
+<div class="boxkoplboven">Informatief - Interessante Links</div>
 <table id="table_links">
 	<tr>
 		<td>

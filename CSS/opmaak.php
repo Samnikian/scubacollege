@@ -6,7 +6,7 @@
 body{
 	height:100%;
 	background-image                        : url('../images/bg.gif');
-	font-size				: 11px;
+	font-size				: 0.75em;
 	font-family				: verdana, arial, helvetica, sans-serif;
 	font-weight				: normal;
 }
@@ -24,7 +24,8 @@ a:hover {
 	height:100%;
 	padding					: 0px;
 	margin					: 25px auto 25px auto;
-	width					: 1200px; /*1200*/
+	width					: 74.999%; /*1200*/
+        max-width:1200px;
 	text-align				: left;
 	background				: #fff;
 	border					: 1px solid #9999cc;
@@ -33,45 +34,21 @@ a:hover {
         
     box-shadow: 0 0 25px black;
 }
-#contentheadermenu{
-	color					: #fff;
-}
-.headermenusub{
-	width					:1194px;/*994*/
-	height					:25px;
-}
-.headermenusub{
-	font-size				: 1.1em;
-	font-weight				: bold;
-	padding					: 8px 3px 2px 3px;
-	background-image		: url('../images/contentheadermenu.jpg');
-	vertical-align			: middle;
-	height					: 23px;
-	text-align				: left;
-}
-.headermenusub a , .headermenusub a:active,.headermenusub a:visited{
-	padding					: 4px 15px 4px 15px;
-	font-weight				: bold;
-	color					: #ffffff;
-	text-decoration			: none;
-}
-.headermenusub a:hover,.headermenusubsel,.headermenusubsel:visited,.headermenusubsel:hover,.headermenusubsel:active {
-	color					: #333333;
-	background-color		: #f4f5f6;
-	text-decoration			: none;
-}
 #contentleft{
 	background				: #fff;
 	float					: left;
-	width					: 200px;
+	width					: 16.66666667%;/*200px*/
 	min-height				: 100%;
 	padding					: 0;
 
 }
+.menucenter{
+	text-align				: center;
+}
 #contentcenter{
 	background				: #fff;
-	float					: left;
-	width					: 813px;/*613*/
+	float					: right;
+	width					: 83.1%;/*813   67.75%*//*613*/185+813=998 989/1200*100=83%
 	padding					: 0;
 	min-height				: 500px;
 	border-left				: 1px solid #9999cc;
@@ -81,12 +58,14 @@ a:hover {
 	text-align				: center;
 	background				: #fff;
 	float					: right;
-	width					: 185px;
+	width					: 15.4%;/*185px*/
 	min-height				: 100%;
 	padding					: 0;
 	
 }
-
+#contentheadermenu{
+	color					: #fff;
+}
 #contentheader {
 	height					: 130px;
 	background				: url('../images/header.jpg') no-repeat 0px 0px;
@@ -96,7 +75,6 @@ a:hover {
 	padding-left			: 4px;
 	font-weight				: bold;
 	font-size				: 11px;
-	background-image		: url('../images/boxkop.jpg');
 	color					: #fff;
 	height					: 18px
 }
@@ -108,13 +86,23 @@ a:hover {
 }
 .boxkopl{
 	text-align				: left;
-	margin-top				: 15px;
+	margin-top				: 7.5px;
 	padding-left			: 8px;
 	font-weight				: bold;
 	background-image		: url('../images/leftbox.jpg');
 	margin-bottom			: 5px;
 	height					: 18px;
 	color					: #fff;
+}
+.boxkoplboven{
+	text-align				: left;
+	margin-top				: 0px;
+	padding-left			: 8px;
+	font-weight				: bold;
+	background-image		: url('../images/leftbox.jpg');
+	margin-bottom			: 5px;
+	height					: 18px;
+	color                                   : white;
 }
 #contentheadermenu {
 	background				: #fff;
@@ -201,6 +189,8 @@ p{
 	margin-left:-15px;
 	width:100%;
 	padding:15px;
+        padding-right:0px;
+        padding-top:0px;/*nodig om bovenste menu weg te doen*/
 }
 .titel{
 	height					: 18px;
@@ -502,4 +492,59 @@ float:left;
     margin-left:25px;
     float:left;
     width: 90.5%;
+}
+@media screen and (max-width: 960px) {
+.boxkopl,.boxkoplboven{
+    padding:15px;
+}
+.nieuwsitem img{
+	width:100%;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+body{
+	height:100%;
+	background-image                        : url('../images/bg.gif');
+	font-size				: 1em;
+	font-family				: verdana, arial, helvetica, sans-serif;
+	font-weight				: normal;
+}
+#contentheader {
+	height					: 130px;
+	background				: url('../images/header.jpg') no-repeat 0px 0px;
+}
+#frame {
+        display:flex;
+        flex-direction: row;
+        flex-wrap:wrap;
+	height:100%;
+	padding					: 0px;
+	margin					: 25px auto 25px auto;
+	width					: 100%; /*1200*/
+        max-width:1200px;
+	text-align				: left;
+	background				: #fff;
+	border					: 1px solid #9999cc;
+	min-height:100%;
+        /*height:100%;*/
+        box-shadow: 0 0 25px black;
+}
+#contentleft{
+	background				: #fff;
+	width					: 100%;/*200px*/
+	padding					: 0;
+}
+#contentcenter{
+	background				: #fff;
+	float					: top;
+	width					: 100%;/*813*//*613*/
+	padding					: 0;
+}
+#contentright{
+	text-align				: center;
+	background				: #fff;
+	width					: 100%;/*185px*/
+	padding					: 0;
+}
 }

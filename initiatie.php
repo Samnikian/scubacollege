@@ -2,7 +2,7 @@
 require_once('header.php');
 ?>
 <div id="initiatie">
-    <h1>Duikschool - Duikinitiatie</h1>
+    <div class="boxkoplboven">Duikschool - Duikinitiatie</div>
     <p>
         <strong>Wat gaan we allemaal doen tijdens zo'n initiatie?</strong><br />
         Eerst geven we je een korte briefing over de gebruikte apparatuur en de basisprincipes van het 
