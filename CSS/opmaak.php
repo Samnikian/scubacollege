@@ -517,14 +517,6 @@ float:left;
 	padding					: 0;
 	min-height				: 500px;
 }
-@media screen and (min-width: 2000px) {
-#contentcenter{
-	background				: #fff;
-	float					: right;
-	width					: 83%;/*813   67.75%*//*613*/185+813=998 989/1200*100=83%
-	padding					: 0;
-	min-height				: 500px;
-}
 #socialmediaklein{
     display:none;
 }
@@ -534,4 +526,13 @@ float:left;
 }
 #immodyck img{
     max-width:250px;
+}
+@media screen and (min-width: 2000px) {
+#contentcenter{
+	background				: #fff;
+	float					: right;
+	width					: 83%;/*813   67.75%*//*613*/185+813=998 989/1200*100=83%
+	padding					: 0;
+	min-height				: 500px;
+}
 }

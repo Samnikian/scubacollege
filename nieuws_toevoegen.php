@@ -55,7 +55,7 @@ else{
 				$aangemaakt = time();
 				$gewijzigd = time();
 				$prioriteit = $_POST['prioriteit'];
-				$query = "INSERT INTO `nieuws` (`titel`,`tekst`,`foto`,`wie`,`aangemaakt`,`gewijzigd`,`prioriteit`) VALUES ('".$titel."','".$tekst."','".$foto."','".$wie."','".$aangemaakt."','".$gewijzigd."','".$prioriteit."');";
+				$query = "INSERT INTO `nieuws` (`titel`,`tekst`,`foto`,`aangemaakt_door`,`aangemaakt`,`gewijzigd`,`prioriteit`) VALUES ('".$titel."','".$tekst."','".$foto."','".$wie."','".$aangemaakt."','".$gewijzigd."','".$prioriteit."');";
 				$db = new mysqli('localhost', 'scubacollege', 'scubacollege', 'scubacollege');
 				if($db->connect_errno > 0){
 					die('Unable to connect to database [' . $db->connect_error . ']');

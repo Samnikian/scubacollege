@@ -22,7 +22,7 @@ class DeleteManager Extends Manager {
         $output = '<fieldset id="DiveEventForm"><legend>Opleiding verwijderen</legend><form action="opleidingen.php" method="POST">';
         $output.= '<input type="hidden" name="id" value="' . $id . '" />';
         $output.= '<input type="hidden" name="action" value="delete_confirmed" />';
-        $output.= '<p>Bent u zeker dat u de opleiding wil verwijderen? Dit zal alle afhankelijke evenementen en opleidingen aanpassen!</p>';
+        $output.= '<p>Bent u zeker dat u de opleiding wil verwijderen? (Dit kan enkel als er geenandere opleidingen of kalender items van afhangen).</p>';
         $output.= '<p><a href="opleidingen.php?action=list">Annuleren &nbsp;</a><input type="submit" value="Bevestigen!" /></p>';
         $output.= '</form></fieldset>';
         return $output;

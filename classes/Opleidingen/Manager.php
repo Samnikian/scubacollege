@@ -5,7 +5,7 @@ namespace Opleidingen;
 class Manager {
 
     protected $db;
-    protected $id, $naam, $afkorting, $omschrijving, $minniveau, $minniveau_naam, $error, $errormsg;
+    protected $id, $naam, $afkorting, $omschrijving, $minniveau, $minniveau_naam, $error, $errormsg, $prijs, $sessies_zwembad, $sessies_buiten, $sessies_theorie;
 
     public function __construct(&$database) {
         $this->db = $database;
@@ -33,11 +33,6 @@ class Manager {
         $output = '';
         $query = "SELECT `id`,`naam` FROM `Opleidingen`";
         $output.='<select name="minniveau">';
-        if ($id == 0) {
-            $output.='<option selected value="0">Nvt</option>';
-        } else {
-            $output.='<option value="0">Nvt</option>';
-        }
         $result = $this->db->query($query);
         if ($result !== false) {
             if ($result->num_rows > 0) {
@@ -64,9 +59,38 @@ class Manager {
         $this->checkNaam();
         $this->checkAfkorting();
         $this->checkOmschrijving();
+        $this->checkPrijs();
+        $this->checkSessiesZwembad();
+        $this->checkSessiesBuiten();
+        $this->checkSessiesTheorie();
         $this->errormsg.= '</ul>';
     }
 
+    private function checkPrijs() {
+        if (empty($this->prijs) or $this->prijs == 0) {
+            $this->error = true;
+            $this->errormsg.= '<li>Prijs moet groter dan 0 zijn.</li>';
+        }
+    }
+
+    private function checkSessiesZwembad() {
+        if (!is_numeric($this->sessies_zwembad)) {
+            $this->error = true;
+            $this->errormsg.= '<li>Sessies Zwembad moet numeriek zijn.</li>';
+        }
+    }
+    private function checkSessiesBuiten() {
+        if (!is_numeric($this->sessies_buiten)) {
+            $this->error = true;
+            $this->errormsg.= '<li>Sessies Buiten moet numeriek zijn.</li>';
+        }
+    }
+        private function checkSessiesTheorie() {
+        if (!is_numeric($this->sessies_theorie)) {
+            $this->error = true;
+            $this->errormsg.= '<li>Sessies Theorie moet numeriek zijn.</li>';
+        }
+    }
     private function checkId() {
         if (!is_numeric($this->id)) {
             $this->error = true;
@@ -112,5 +136,4 @@ class Manager {
         echo '<p class="melding"><a href="opleidingen.php?action=list">De informatie werd met succes aangepast! <br />U word binnen 5 seconden doorverwezen naar de kalender, klik hier indien dit niet gebeurd.</a></p>';
         unset($_SESSION['action']);
     }
-
 }

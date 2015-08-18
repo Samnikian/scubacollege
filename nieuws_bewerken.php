@@ -80,14 +80,14 @@ elseif(isIngelogd() && isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_ME
 				$id = $_POST['id'];
 				$titel = $_POST['titel'];
 				$tekst = $_POST['tekst'];
-				$wie = $_SESSION['user_id'];
+				$gewijzigd_door = $_SESSION['user_id'];
 				$gewijzigd = time();
 				$prioriteit = $_POST['prioriteit'];
 				if($foto=='geen'){
 					$query = "UPDATE `nieuws` SET `titel`='".htmlspecialchars($titel)."',`tekst`='".$tekst."',`wie`='".$wie."',`gewijzigd`='".$gewijzigd."',`prioriteit`='".$prioriteit."' WHERE `id`='".$id."';";
 				}
 				else{
-					$query = "UPDATE `nieuws` SET `titel`='".htmlspecialchars($titel)."',`tekst`='".$tekst."',`foto`='".$foto."',`wie`='".$wie."',`gewijzigd`='".$gewijzigd."',`prioriteit`='".$prioriteit."' WHERE `id`='".$id."';";
+					$query = "UPDATE `nieuws` SET `titel`='".htmlspecialchars($titel)."',`tekst`='".$tekst."',`foto`='".$foto."',`gewijzigd_door`='".$gewijzigd_door."',`gewijzigd`='".$gewijzigd."',`prioriteit`='".$prioriteit."' WHERE `id`='".$id."';";
 				}
 				$db = new mysqli('localhost', 'scubacollege', 'scubacollege', 'scubacollege');
 				if($db->connect_errno > 0){
