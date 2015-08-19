@@ -60,7 +60,7 @@ a:hover {
 #contentcenter{
 	background				: #fff;
 	float					: right;
-	width					: 83%;/*813   67.75%*//*613*/185+813=998 989/1200*100=83%
+	width					: 83%;/*813   67.75%*//*613*//*185+813=998 989/1200*100=83%*/
 	padding					: 0;
 	min-height				: 500px;
 	/*border-left				: 1px solid #9999cc;*/
@@ -149,7 +149,7 @@ margin-left:-10%;
 	border					: 0px solid black;
 	width					: 100%;
         max-width:100%;
-        margin-bottom:5%px;
+        margin-bottom:5px;
 }
 .padi,.padi:hover{
 margin-left:-10%;
@@ -161,7 +161,7 @@ display:block;
 	width					: 100%;
 	display					: inline-block;
         max-width:100%;
-        margin-bottom:5%px;
+        margin-bottom:5px;
 }
 .padi img,.dan img{
 max-width:75%;
@@ -481,16 +481,16 @@ fieldset form .bericht textarea{
     color: black;
 }
 .eventWanneer{
-    width:17,5%;
+    width:17.5%;
 }
 .eventOmschijving{
     width:45%;
 }
 .eventLocatie{
-    width:17,5%;
+    width:17.5%;
 }
 .eventMinNiveau{
-    width:17,5%;
+    width:17.5%;
 }
 .eventAddToCalendar img{
     width:32px;
@@ -548,7 +548,7 @@ float:left;
 #contentcenter{
 	background				: #fff;
 	float					: right;
-	width					: 83.175%;/*813   67.75%*//*613*/185+813=998 989/1200*100=83%
+	width					: 83.175%;/*813   67.75%*//*613*//*185+813=998 989/1200*100=83%*/
 	padding					: 0;
 	min-height				: 500px;
 }
@@ -566,7 +566,7 @@ float:left;
 #contentcenter{
 	background				: #fff;
 	float					: right;
-	width					: 83%;/*813   67.75%*//*613*/185+813=998 989/1200*100=83%
+	width					: 83%;/*813   67.75%*//*613*//*185+813=998 989/1200*100=83%*/
 	padding					: 0;
 	min-height				: 500px;
 }
