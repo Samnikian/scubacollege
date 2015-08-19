@@ -29,15 +29,15 @@
                     switch ($_SESSION['user_level']) {
                         case ADMIN:
                             echo "<div class=\"boxkopl\">Admin</div>";
-                            echo "<a href=\"nieuws_toevoegen.php\">Nieuws Item Toevoegen</a><br />";
-                            echo "<a href=\"event_toevoegen.php\">Kalender Item Toevoegen</a><br />";
+                            echo "<a href=\"nieuws_toevoegen.php\">Nieuws Item Toevoegen</a><br /><hr />";
+                            echo "<a href=\"event_toevoegen.php\">Kalender Item Toevoegen</a><br /><hr />";
                             echo "<a href=\"opleidingen.php?action=add\">Opleiding Toevoegen</a><br />";
                             echo "<a href=\"opleidingen.php?action=list\">Lijst van opleidingen</a><br />";
                             break;
                         case STAFF:
                             echo "<div class=\"boxkopl\">Staff</div>";
-                            echo "<a href=\"nieuws_toevoegen.php\">Nieuws Item Toevoegen</a><br />";
-                            echo "<a href=\"event.php\">Kalender Item Toevoegen</a><br />";
+                            echo "<a href=\"nieuws_toevoegen.php\">Nieuws Item Toevoegen</a><br /><hr />";
+                            echo "<a href=\"event.php\">Kalender Item Toevoegen</a><br /><hr />";
                             echo "<a href=\"opleidingen.php?action=add\">Opleiding Toevoegen</a><br />";
                             echo "<a href=\"opleidingen.php?action=list\">Lijst van opleidingen</a><br />";
                             break;

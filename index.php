@@ -11,7 +11,7 @@ if($result = $db->query($query)){
 				echo "&nbsp;<a href=\"nieuws_bewerken.php?i=".$row['id']."\">[bewerken]</a>";
 				echo "&nbsp;<a href=\"nieuws_verwijderen.php?i=".$row['id']."\">[verwijderen]</a>";
 			}
-			echo "</span>";
+                        echo "</span>";
 			echo "<span class=\"rechts\">".date('d/m/Y',$row['aangemaakt'])."&nbsp;</span></strong>";
 			$parser = new JBBCode\Parser();
 			$parser->addCodeDefinitionSet(new JBBCode\DefaultCodeDefinitionSet());

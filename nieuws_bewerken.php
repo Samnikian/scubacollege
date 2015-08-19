@@ -84,7 +84,7 @@ elseif(isIngelogd() && isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_ME
 				$gewijzigd = time();
 				$prioriteit = $_POST['prioriteit'];
 				if($foto=='geen'){
-					$query = "UPDATE `nieuws` SET `titel`='".htmlspecialchars($titel)."',`tekst`='".$tekst."',`wie`='".$wie."',`gewijzigd`='".$gewijzigd."',`prioriteit`='".$prioriteit."' WHERE `id`='".$id."';";
+					$query = "UPDATE `nieuws` SET `titel`='".htmlspecialchars($titel)."',`tekst`='".$tekst."',`gewijzigd_door`='".$gewijzigd_door."',`gewijzigd`='".$gewijzigd."',`prioriteit`='".$prioriteit."' WHERE `id`='".$id."';";
 				}
 				else{
 					$query = "UPDATE `nieuws` SET `titel`='".htmlspecialchars($titel)."',`tekst`='".$tekst."',`foto`='".$foto."',`gewijzigd_door`='".$gewijzigd_door."',`gewijzigd`='".$gewijzigd."',`prioriteit`='".$prioriteit."' WHERE `id`='".$id."';";

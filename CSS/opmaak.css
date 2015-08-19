@@ -1,11 +1,16 @@
-<?php
-    header("Content-type: text/css; charset: UTF-8");
-    header('Cache-control: must-revalidate');
-    
-?>
 body{
 	height:100%;
-	background-image                        : url('../images/bg.gif');
+	/*background-image                        : url('../images/bg.gif');*/
+        /* Safari 4-5, Chrome 1-9 */ 
+        background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#88D1FC), to(#B9E3FC)); 
+        /* Safari 5.1, Chrome 10+ */
+        background: -webkit-linear-gradient(top, #88D1FC, #B9E3FC);
+        /* Firefox 3.6+ */
+        background: -moz-linear-gradient(top, #88D1FC, #B9E3FC);
+        /* IE 10 */
+        background: -ms-linear-gradient(top, #88D1FC, #B9E3FC);
+        /* Opera 11.10+ */
+        background: -o-linear-gradient(top, #88D1FC, #B9E3FC);
 	font-size				: 0.75em;
 	font-family				: verdana, arial, helvetica, sans-serif;
 	font-weight				: normal;
@@ -64,7 +69,7 @@ a:hover {
 	text-align				: center;
 	background				: #fff;
 	float					: right;
-	width					: 15.4%;/*185px*/
+	width					: 15.4%;/*185px*//*
 	min-height				: 100%;
 	padding					: 0;
 	
@@ -95,7 +100,17 @@ a:hover {
 	margin-top				: 7.5px;
 	padding-left			: 8px;
 	font-weight				: bold;
-	background-image		: url('../images/leftbox.jpg');
+	/*background-image		: url('../images/leftbox.jpg');*/
+        /* Safari 4-5, Chrome 1-9 */ 
+        background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#00579D), to(#00AAD4)); 
+        /* Safari 5.1, Chrome 10+ */
+        background: -webkit-linear-gradient(top, #00579D, #00AAD4);
+        /* Firefox 3.6+ */
+        background: -moz-linear-gradient(top, #00579D, #00AAD4);
+        /* IE 10 */
+        background: -ms-linear-gradient(top, #00579D, #00AAD4);
+        /* Opera 11.10+ */
+        background: -o-linear-gradient(top, #00579D, #00AAD4);
 	margin-bottom			: 5px;
 	height					: 18px;
 	color					: #fff;
@@ -105,7 +120,17 @@ a:hover {
 	margin-top				: 0px;
 	padding-left			: 8px;
 	font-weight				: bold;
-	background-image		: url('../images/leftbox.jpg');
+	/*background-image		: url('../images/leftbox.jpg');*/
+        /* Safari 4-5, Chrome 1-9 */ 
+        background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#00579D), to(#00AAD4)); 
+        /* Safari 5.1, Chrome 10+ */
+        background: -webkit-linear-gradient(top, #00579D, #00AAD4);
+        /* Firefox 3.6+ */
+        background: -moz-linear-gradient(top, #00579D, #00AAD4);
+        /* IE 10 */
+        background: -ms-linear-gradient(top, #00579D, #00AAD4);
+        /* Opera 11.10+ */
+        background: -o-linear-gradient(top, #00579D, #00AAD4);
 	margin-bottom			: 5px;
 	height					: 18px;
 	color                                   : white;
@@ -213,7 +238,17 @@ p{
 	height					: 18px;
 	color					: #fff;
 	display:block;
-	background-image	: url('../images/leftbox.jpg');
+	/*background-image	: url('../images/leftbox.jpg');/*1f303e => 273e47*/
+        /* Safari 4-5, Chrome 1-9 */ 
+        background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#00579D), to(#00AAD4)); 
+        /* Safari 5.1, Chrome 10+ */
+        background: -webkit-linear-gradient(top, #00579D, #00AAD4);
+        /* Firefox 3.6+ */
+        background: -moz-linear-gradient(top, #00579D, #00AAD4);
+        /* IE 10 */
+        background: -ms-linear-gradient(top, #00579D, #00AAD4);
+        /* Opera 11.10+ */
+        background: -o-linear-gradient(top, #00579D, #00AAD4);
 }
 .nieuwsitem img{
 	max-width:100%;

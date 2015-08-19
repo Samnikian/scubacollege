@@ -29,7 +29,7 @@ $ingelogd = isIngelogd();
 <meta name="HandheldFriendly" content="true">
         
         <link rel="icon" type="image/ico" href="favicon.ico" />
-        <link rel="stylesheet" type="text/css" href="CSS/opmaak.php" />
+        <link rel="stylesheet" type="text/css" href="CSS/opmaak.css" />
         <link rel="stylesheet" type="text/css" href="CSS/ScreenMax960.css" media="screen and (max-width: 960px)" />
         <link rel="stylesheet" type="text/css" href="CSS/ScreenMax375.css" media="screen and (max-width: 375px)" />
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
