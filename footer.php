@@ -2,9 +2,9 @@
 		</div>
                 <div id="contentleft">
                 <!--<div class="boxkopl">Leren duiken</div>-->
-                <div class="boxkoplboven">Startpagina</div>
-                <a href="index.php">Home</a><br />
-
+                <div class="boxkoplboven">Algemeen</div>
+                <a href="index.php">Home - Nieuws</a><br />
+                <a href="kalender.php">Activiteiten kalender</a><br />
 
                 <div class="boxkopl">Duikschool</div>
                 <a href="initiatie.php">Duikinitiatie</a><br />
@@ -14,8 +14,8 @@
 
                 <div class="boxkopl">Club</div>
                 <a href="">Informatie</a><br />
-                <a href=""> Activiteiten</a><br />
-                <a target="_blank" href="http://www.facebook.com/scubacollege#!/scubacollege?sk=photos" > Foto album</a><br />
+                
+                <a target="_blank" href="http://www.facebook.com/scubacollege#!/scubacollege?sk=photos" >Facebook Fotoalbum</a><br />
 
                 <div class="boxkopl">Contact</div>
                 <a href="">Wie zijn wij ?</a><br />
@@ -29,26 +29,31 @@
                     switch ($_SESSION['user_level']) {
                         case ADMIN:
                             echo "<div class=\"boxkopl\">Admin</div>";
-                            echo "<a href=\"nieuws_toevoegen.php\">Nieuws Item Toevoegen</a><br /><hr />";
-                            echo "<a href=\"event_toevoegen.php\">Kalender Item Toevoegen</a><br /><hr />";
-                            echo "<a href=\"opleidingen.php?action=add\">Opleiding Toevoegen</a><br />";
-                            echo "<a href=\"opleidingen.php?action=list\">Lijst van opleidingen</a><br />";
-                            break;
+                        break;
                         case STAFF:
                             echo "<div class=\"boxkopl\">Staff</div>";
-                            echo "<a href=\"nieuws_toevoegen.php\">Nieuws Item Toevoegen</a><br /><hr />";
-                            echo "<a href=\"event.php\">Kalender Item Toevoegen</a><br /><hr />";
-                            echo "<a href=\"opleidingen.php?action=add\">Opleiding Toevoegen</a><br />";
-                            echo "<a href=\"opleidingen.php?action=list\">Lijst van opleidingen</a><br />";
-                            break;
+                        break;
                         case INSTRUCTOR:
                             echo "<div class=\"boxkopl\">Instructeur</div>";
-                            break;
+                        break;
                         case USER:
                             echo "<div class=\"boxkopl\">Leden</div>";
-                            break;
+                        break;
                     }
-                    echo "<a href=\"logout.php\">Uitloggen</a><br />";
+                    switch ($_SESSION['user_level']) {
+                        case ADMIN:
+                            echo "<a href=\"event_toevoegen.php\">Kalender Item Toevoegen</a><br /><hr />";
+                            echo "<a href=\"opleidingen.php?action=add\">Opleiding Toevoegen</a><br />";
+                            echo "<a href=\"opleidingen.php?action=list\">Lijst van opleidingen</a><br /><hr />";
+                        case STAFF:
+                            echo "<a href=\"nieuws_toevoegen.php\">Nieuws Item Toevoegen</a><br /><hr />";
+                            echo "<a href=\"event.php\">Kalender Item Toevoegen</a><br /><hr />";
+                        case INSTRUCTOR:
+                            
+                        case USER:
+                            echo "<a href=\"usercp.php\">User Control Panel</a><br /><hr />";
+                            echo "<a href=\"logout.php\">Uitloggen</a><br />";
+                    }
                 } else {
                     require_once('includes/loginform.html');
                 }
