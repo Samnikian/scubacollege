@@ -5,14 +5,14 @@ class Manager {
         if (POST) {
             $this->getPostData();
             $this->validateData();
-            if(heeftrechten en isingelogt) {
+            if($heeftrechten and $isingelogt) {
                 if ($ok) {
                     $this->RegisterUser();
                 }
             } elseif(isingelogt) {
                 //TODO niet genoeg rechten
             } else {
-                redirect('index.php'):
+                redirect('index.php');
             }
         } else {
             $this->getRegistrationForm();
