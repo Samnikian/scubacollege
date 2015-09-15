@@ -7,6 +7,11 @@ class Manager {
     private $email, $lidnr;
     private $error = false;
     private $errors = array();
+    private $activatie_hash;
+
+    public function __construct() {
+        $this->$activatie_hash = hash('sha256', time());
+    }
 
     public function newUser() {
         $output = '';
@@ -27,7 +32,12 @@ class Manager {
     }
 
     private function getRegistrationForm() {
-        echo 'A$$';
+        $output = '<fieldset><legend>Een nieuwe gebruiker toevoegen</legend>';
+        $output.= '<label for="lidnr">Lid Nummer</label><input type="text" name="lidnr" value="'.$this->lidnr.'" placeholder="2015345678" />';
+        $output.= '<label for="email"></label><input type="text" name="email" value="'.$this->email.'" placeholder="voorbeeld@voorbeeld.be" />';
+        $output.= '<input type="submit" name="" value="Toevoegen" />';
+        $output.= '</fieldset>';
+        return $output;
     }
 
     private function getPostData() {
@@ -47,16 +57,25 @@ class Manager {
     }
 
     private function RegisterUser() {
-        
-    }
-
-    public function getUnauthorizedMessage() {
-        return '<span class="melding">U heeft niet genoeg rechten om een gebruiker toe te voegen.</span>';
+        $query = "INSERT INTO tabelnaam (email,lidnr,activatie_hash) VALUES (?,?,?);";
+        $stmt = $this->db->prepare($query);
+        if ($stmt !== false) {
+            $stmt->bind_param("sis", $this->email, $this->lidnr, $this->activatie_hash);
+            if ($stmt->execute()) {
+                return $this->getSuccessMessage();
+            } else {
+                return $this->getFailMessage($stmt->error);
+            }
+            $stmt->close();
+        } else {
+            return 'Error: ' . $stmt->error;
+        }
     }
 
     public function getErrors() {
-        $output = '<ul>';
-        for($i=0;$i<count($this->errors);$i++){
+        $output = 'Gelieve de volgende fouten te corrigeren.';
+        $output.= '<ul>';
+        for ($i = 0; $i < count($this->errors); $i++) {
             $output.= $this->errors[$i];
         }
         $output.= '</ul>';
@@ -64,8 +83,16 @@ class Manager {
 
     public function validateAuthorization() {
         if ($_SESSION['user_level'] <= 3 or ! isset($_SESSION['ingelogt']) or $_SESSION['ingelogt'] === false) {
-            redirect('index.php');
+            return '<span class="melding">U heeft niet genoeg rechten om een gebruiker toe te voegen.</span>';
         }
+    }
+
+    public function getSuccessMessage() {
+        return '<span class="melding"> De gebruiker is succesvol toegevoegd></span>';
+    }
+
+    public function getFailMessage($err = 'onbekend') {
+        return '<span class="melding"> Er is een fout opgetreden, contacteer de webmaster. (Foutcode: ' . $err . ')</span>';
     }
 
 }
