@@ -4,19 +4,19 @@ namespace Users;
 
 class User {
 
-    private $db, $id, $email, $password, $last_login_time, $reset_hash, $reset_time, $reset_email, $last_login_ip, $aantal_pogingen, $lidnr, $activatie_hash, $adres, $opleidingen, $naam, $voornaam, $level, $active,$input_password;
+    private $result,$db, $id, $email, $password, $last_login_time, $reset_hash, $reset_time, $reset_email, $last_login_ip, $aantal_pogingen, $lidnr, $activatie_hash, $adres, $opleidingen, $naam, $voornaam, $level, $active, $input_password;
 
     public function __construct(&$db, $id = '', $mail = '') {
         $this->db = $db;
         if ($mail == '' && $id == '' && isset($_SESSION['ingelogt']) && $_SESSION['ingelogt'] === true) {
             $this->id = $_SESSION['user_id'];
-            $this->loadDetails();
+            $this->result = $this->loadDetails();
         } elseif (is_numeric($id) && empty($mail)) {
             $this->id = $id;
-            $this->loadDetails();
-        } elseif(!is_numeric($id) && !empty($mail)) {
+            $this->result = $this->loadDetails();
+        } elseif (!is_numeric($id) && !empty($mail)) {
             $this->email = $mail;
-            $this->loadDetailsMail();
+            $this->result = $this->loadDetailsMail();
         }
     }
 
@@ -49,17 +49,17 @@ class User {
                     $_SESSION['user_level'] = $this->level;
                     $_SESSION['user_id'] = $this->id;
                     $this->loginSucces();
-                    return array(true, '<span class="melding">Succesvol ingelogt!</span>');
+                    $this->result =  array(true, '<span class="melding">Succesvol ingelogt!</span>');
                 } else {
                     $_SESSION['ingelogt'] = false;
                     $this->slechtePoging();
-                    return array(false, '<span class="melding">Wachtwoord incorrect.</span>');
+                    $this->result =  array(false, '<span class="melding">Wachtwoord incorrect.</span>');
                 }
             } else {
-                return array(false, '<span class="melding">Teveel login pogingen! <a href="forgot.php">Wachtwoord vergeten?</a></span>');
+                $this->result =  array(false, '<span class="melding">Teveel login pogingen! <a href="forgot.php">Wachtwoord vergeten?</a></span>');
             }
         } else {
-            return array(false, '<span class="melding">Account is inactief, neem contact op met de beheerder.</span>');
+            $this->result =  array(false, '<span class="melding">Account is inactief, neem contact op met de beheerder.</span>');
         }
     }
 
@@ -90,12 +90,13 @@ class User {
                 $this->level = $level;
                 $this->active = $active;
                 $this->aantal_pogingen = $aantal_pogingen;
+                $this->result = array(true,'');
             } else {
-                throw new \Exception('Failed to load data.');
+                $this->result = array(false, '<span class="melding">Failed to load data.</span>');
             }
             $stmt->close();
         } else {
-            return 'Error: ' . $stmt->error;
+            $this->result = array(false, '<span class="melding">Account bestaat niet!</span>');
         }
     }
 
@@ -106,7 +107,7 @@ class User {
             $stmt->bind_param("s", $this->email);
             if ($stmt->execute()) {
                 $stmt->bind_result($id, $password, $lidnr, $adres, $opleidingen, $naam, $voornaam, $level, $active, $aantal_pogingen);
-                $result = $stmt->fetch();
+                $stmt->fetch();
                 $this->id = $id;
                 $this->password = $password;
                 $this->lidnr = $lidnr;
@@ -117,12 +118,13 @@ class User {
                 $this->level = $level;
                 $this->active = $active;
                 $this->aantal_pogingen = $aantal_pogingen;
+                $this->result =  array(true,'');
             } else {
-                throw new \Exception('Error retrieveing data.');
+                $this->result =  array(false, '<span class="melding">Failed to load data.</span>');
             }
             $stmt->close();
         } else {
-            throw new \Exception('Error: ' . $stmt->error);
+            $this->result =  array(false, '<span class="melding">Account bestaat niet!</span>');
         }
     }
 
@@ -173,12 +175,14 @@ class User {
     public function doLogin() {
         $this->getPostData();
         $this->loadDetailsMail();
-        $result = $this->login($this->input_password);
-        if ($result[0]) {
-            echo $result[1];
+        if($this->result[0]){
+            $this->login($this->input_password);
+        }
+        if ($this->result[0]) {
+            echo $this->result[1];
             redirect('index.php');
         } else {
-            echo $result[1];
+            echo $this->result[1];
         }
         $this->input_password = '';
     }

@@ -23,8 +23,11 @@ if($result = $db->query($query)){
 			echo "</p>";
 		}
 	}
+        $result->close();
 }
-$result->close();
+else{
+    echo 'Geen nieuws beschikbaar';
+}
 ?>
 <?php
 require_once('footer.php');
