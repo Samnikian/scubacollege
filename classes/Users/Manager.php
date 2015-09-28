@@ -10,7 +10,7 @@ class Manager {
     private $activatie_hash;
 
     public function __construct() {
-        $this->$activatie_hash = hash('sha256', time());
+        $this->activatie_hash = hash('sha256', time());
     }
 
     public function newUser() {
@@ -57,7 +57,7 @@ class Manager {
     }
 
     private function RegisterUser() {
-        $query = "INSERT INTO tabelnaam (email,lidnr,activatie_hash) VALUES (?,?,?);";
+        $query = "INSERT INTO login (email,lidnr,activatie_hash) VALUES (?,?,?);";
         $stmt = $this->db->prepare($query);
         if ($stmt !== false) {
             $stmt->bind_param("sis", $this->email, $this->lidnr, $this->activatie_hash);

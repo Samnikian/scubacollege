@@ -14,6 +14,7 @@ if (DEBUG and $db->connect_errno > 0) {
 require_once('includes/functions.php');
 spl_autoload_register('autoLoader');
 $ingelogd = isIngelogd();
+$self = filter_input(INPUT_SERVER, 'PHP_SELF')
 ?>
 <!doctype html>
 <html lang="en">
@@ -23,17 +24,19 @@ $ingelogd = isIngelogd();
         <meta name="keywords" content="duiken,leren duiken,padi,padi,duikschool,duikclub,duikcentrum,duikwinkel,duikshop,open water,advanced open water,openwater,ow,aow,rescue diver,efr,divemaster,owsi,mechelen,antwerpen,walem,nitrox,cursus,duikcursus,duikopleiding,nekker,de nekker,dan,dan,bare,green force,mares,ralf tech,seac sub,sealife,suunto,uwkinetics,underwater kinetics,uk" />
         <meta name="verify-v1" content="1tjmsjmixkferm/5wdgpkjrv24bv+4ggch4v6eryymk=" />
         <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-        
+
         <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="HandheldFriendly" content="true">
-        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="HandheldFriendly" content="true">
+
         <link rel="icon" type="image/ico" href="favicon.ico" />
         <link rel="stylesheet" type="text/css" href="CSS/opmaak.css" />
         <link rel="stylesheet" type="text/css" href="CSS/ScreenMax960.css" media="screen and (max-width: 960px)" />
         <link rel="stylesheet" type="text/css" href="CSS/ScreenMax375.css" media="screen and (max-width: 375px)" />
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
         <script src="googleAutoComplete.js"></script>
+        <script src="js/jquery.ui.autocomplete.html.js" />
+        <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.min.js"</script>
         <?php
         if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] != 'POST') {
             if (strpos(filter_var($_SERVER['PHP_SELF'], FILTER_SANITIZE_URL), 'contact.php') !== false or strpos($_SERVER['PHP_SELF'], 'initiatie.php') !== false) {
@@ -54,5 +57,5 @@ $ingelogd = isIngelogd();
     <body>
         <?php require_once('includes/fbsnippet.html'); ?>
         <div id="frame">
-            <div id="contentheader"></div>
+            <div id="contentheader"><?php echo $self; ?></div>
             <div id="contentcenter">

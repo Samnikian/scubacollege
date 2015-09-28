@@ -569,3 +569,21 @@ float:left;
 	min-height				: 500px;
 }
 }
+
+fieldset{
+	padding-top:25px;
+	text-align : center;
+	border: 1px solid #9999cc;
+	margin: 10px;
+}
+fieldset form label{
+	display:inline-block;
+	width: 180px;
+	margin-bottom:10px;
+	text-align:left;
+}
+fieldset form input{
+	display:inline-block;
+	width: 200px;
+	margin-bottom:10px;
+}
