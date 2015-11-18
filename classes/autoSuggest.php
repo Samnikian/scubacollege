@@ -1,5 +1,6 @@
 <?php
-class autoSuggest{
+
+class autoSuggest {
 
     private $db;
     private $a_json = array();
@@ -25,21 +26,16 @@ class autoSuggest{
     }
 
     private function getData() {
-        $query = 'SELECT naam,voornaam,lidnr FROM login WHERE lidnr LIKE ? OR naam LIKE ? OR voornaam LIKE ?;';
-        $stmt = $this->db->prepare($query);
-        if ($stmt !== false) {
-            $stmt->bind_param("sss", $this->input, $this->input, $this->input);
-            if ($stmt->execute()) {
-                var_dump($stmt);
-                if($stmt->num_rows > 0) {
-                    $stmt->bind_result($naam, $voornaam, $lidnr);
-                    $a_json_row["id"] = $lidnr;
-                    $a_json_row["value"] = $lidnr;
-                    $a_json_row["label"] = $lidnr . ' - ' . $voornaam . ' ' . $naam;
-                    array_push($this->a_json, $a_json_row);
-                }
+        $query = "SELECT naam,voornaam,lidnr FROM login WHERE lidnr LIKE '%".$this->input."%' OR naam LIKE '%".$this->input."%' OR voornaam LIKE '%".$this->input."%';";
+        $result = $this->db->query($query);
+        var_dump($result);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $a_json_row["id"] = $row['lidnr'];
+                $a_json_row["value"] = $row['lidnr'];
+                $a_json_row["label"] = $row['lidnr'] . ' - ' . $row['voornaam'] . ' ' . $row['naam'];
+                array_push($this->a_json, $a_json_row);
             }
-            $stmt->close();
         }
     }
 

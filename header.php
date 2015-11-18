@@ -35,8 +35,10 @@ $self = filter_input(INPUT_SERVER, 'PHP_SELF')
         <link rel="stylesheet" type="text/css" href="CSS/ScreenMax375.css" media="screen and (max-width: 375px)" />
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
         <script src="googleAutoComplete.js"></script>
-        <script src="js/jquery.ui.autocomplete.html.js" />
-        <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.min.js"</script>
+        <!--<script src="js/jquery.ui.autocomplete.html.js" />
+        <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.min.js"</script>-->
+        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <?php
         if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] != 'POST') {
             if (strpos(filter_var($_SERVER['PHP_SELF'], FILTER_SANITIZE_URL), 'contact.php') !== false or strpos($_SERVER['PHP_SELF'], 'initiatie.php') !== false) {
@@ -57,5 +59,5 @@ $self = filter_input(INPUT_SERVER, 'PHP_SELF')
     <body>
         <?php require_once('includes/fbsnippet.html'); ?>
         <div id="frame">
-            <div id="contentheader"><?php echo $self; ?></div>
+            <div id="contentheader"></div>
             <div id="contentcenter">

@@ -34,14 +34,13 @@ if ($req === 'POST' && $action === 'changepassword') {
         <legend>Gebruiker blokkeren/deblokkeren</legend>
         <form action="" method="post">
             <script>
-                $(document).ready(function ($) {
-                    $('#customerAutocomplte').autocomplete({
-                        source: 'suggest.php',
-                        minLength: 2
+                    $(function () {
+                        $("#autocomplete").autocomplete({
+                            source: 'suggest.php'
+                        });
                     });
-                });
             </script>
-            <input type="text" placeholder="Name" id="customerAutocomplte" class="ui-autocomplete-input" autocomplete="off" />
+            <div class="ui-widget"><input type="text" placeholder="Name" id="autocomplete" class="ui-autocomplete" /></div>
         </form>
     </fieldset>
     <fieldset>
