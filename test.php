@@ -15,9 +15,9 @@ $res = $u->login('samnikian');
 if ($res[0] === false) {
     echo $res[1];
 }*/
-$u = new \Users\User($db);
-$u->logout();
-
+//$u = new \Users\User($db);
+//$u->logout();
+echo time()-1447965656;
 //$b  =new \Users\User($db,'','niels@mortelmans.org');
 var_dump($_SESSION);
 require_once('footer.php');

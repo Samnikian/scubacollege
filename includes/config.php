@@ -38,3 +38,8 @@ define('FILE_CONTACT_TEMPLATE','includes/contacttemplate.html');
 define('FILE_CONTACT_FORM','contact.php');
 define('FILE_INITIATIE_TEMPLATE','includes/initiatietemplate.html');
 define('FILE_INITIATIE_FORM','initiatie.php');
+
+define('WEBMASTER_MAIL','webmaster@scubacollege.be');
+define('WEBMASTER_NAME','Webmaster');
+define('FILE_REGISTRATION_TEMPLATE','includes/registrationtemplate.html');
+define('MAIL_REGISTRATION_SUBJECT','Registratie scubacollege.be account');
