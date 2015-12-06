@@ -213,7 +213,7 @@ class Manager {
 
     private function activateUser($time, $hash) {
         if (time() - $time < 172800) {
-            $bytes = openssl_random_pseudo_bytes(2);
+            $bytes = openssl_random_pseudo_bytes(4);
             $password = bin2hex($bytes);
             $password_hash = password_hash($password, PASSWORD_DEFAULT);
             $query = "UPDATE login SET password='".$password_hash."', active=1, activatie_hash='' WHERE activatie_hash='".$hash."' LIMIT 1;";
