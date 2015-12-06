@@ -45,8 +45,6 @@ $self = filter_input(INPUT_SERVER, 'PHP_SELF')
                 echo "<script src='https://www.google.com/recaptcha/api.js'></script>";
             }
         }
-        ?>
-        <?php
         if (strpos(filter_var($_SERVER['PHP_SELF'], FILTER_SANITIZE_URL), 'links.php') !== false) {
             echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"CSS/links.css\" />";
         }

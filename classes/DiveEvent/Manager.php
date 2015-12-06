@@ -14,9 +14,9 @@ class Manager {
         $this->objOpleidingen = new \Opleidingen\Manager($dbref);
     }
 
-    protected function getFailMessage() {
-        header('refresh: 5; url=event.php');
-        echo '<p class="melding"><a href="event.php">U word binnen 5 seconden terug doorverwezen naar het formulier, klik hier indien dit niet gebeurd.</a></p>';
+    protected function getFailMessage($url = 'event.php') {
+        header('refresh: 5; url='.$url);
+        echo '<p class="melding"><a href="'.$url.'">Error, U word binnen 5 seconden terug doorverwezen naar het formulier, klik hier indien dit niet gebeurd.</a></p>';
     }
 
     protected function getSuccessMessage() {

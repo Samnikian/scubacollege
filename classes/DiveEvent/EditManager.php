@@ -54,10 +54,10 @@ class EditManager Extends Manager {
     }
 
     private function eventUpdaten() {
-        $query = "UPDATE `kalender` SET `begin`='" . $this->datumNaarTimeStamp($this->begin) . "',`einde`='" . $this->datumNaarTimeStamp($this->einde) . "',`omschrijving`='" . $this->omschrijving . "',`titel`='" . $this->titel . "',`locatie`='" . $this->locatie . "',`fblink`='" . $this->fblink . "',`heledag`='" . $this->heledag . "',`minniveau`=" . $this->minniveau . ",`minniveau_naam`='" . $this->objOpleidingen->idNaarNaam($this->minniveau) . "' WHERE `id`=" . $this->id . ";";
+        $query = "UPDATE `kalender` SET `begin`='" . $this->datumNaarTimeStamp($this->begin) . "',`einde`='" . $this->datumNaarTimeStamp($this->einde) . "',`omschrijving`='" . $this->omschrijving . "',`titel`='" . $this->titel . "',`locatie`='" . $this->locatie . "',`fblink`='" . $this->fblink . "',`heledag`='" . $this->heledag . "',`minniveau`=" . $this->minniveau . " WHERE `id`=" . $this->id . ";";
         $result = $this->db->query($query);
         if (!$result) {
-            return $this->getFailMessage();
+            return $this->getFailMessage('event.php?action=edit&id='.$this->id);
         } else {
             return $this->getSuccessMessage();
         }
@@ -85,7 +85,7 @@ class EditManager Extends Manager {
         $output.='<label for="locatie">Locatie</label><input type="text" id="locatie" name="locatie" value="' . $this->locatie . '" required/><br />';
         $output.='<label for="fblink">Facebook link</label><input type="text" id="fblink" name="fblink" value="' . $this->fblink . '" placeholder="https://www.facebook.com/events/1448283488824627/" /><br />';
         $output.='<label for="minniveau">Minimum Niveau</label>';
-        $output.= $this->objOpleidingen->getOpleidingSelector($this->id);
+        $output.= $this->objOpleidingen->getOpleidingSelector($this->minniveau);
         $output.='<input type="submit" id="submit" value="Opslaan!" />';
         $output.= '</form></fieldset>';
         return $output;

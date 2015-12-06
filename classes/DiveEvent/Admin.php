@@ -43,6 +43,9 @@ class Admin {
 
     private function checkPost() {
         switch ($this->postaction) {
+            case 'add':
+                $mgr = new AddManager($this->db);
+                return $mgr->addEventForm();
             case 'edit':
                 $mgr = new EditManager($this->db);
                 return $mgr->editEventForm();

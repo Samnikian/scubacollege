@@ -25,11 +25,12 @@ class AddManager Extends Manager {
     }
 
     private function nieuwEventOpslaan() {
-        $query = "INSERT INTO `kalender` (`begin`,`einde`,`omschrijving`,`titel`,`locatie`,`fblink`,`heledag`,`minniveau`,`minniveau_naam`)";
-        $query.= "VALUES ('" . $this->datumNaarTimeStamp($this->begin) . "','" . $this->datumNaarTimeStamp($this->einde) . "','" . $this->omschrijving . "','" . $this->titel . "','" . $this->locatie . "','" . $this->fblink . "','" . $this->heledag . "','" . $this->minniveau . "','" . $this->objOpleidingen->idNaarNaam($this->minniveau) . "');";
+        $query = "INSERT INTO `kalender` (`begin`,`einde`,`omschrijving`,`titel`,`locatie`,`fblink`,`heledag`,`minniveau`)";
+        $query.= "VALUES ('" . $this->datumNaarTimeStamp($this->begin) . "','" . $this->datumNaarTimeStamp($this->einde) . "','" . $this->omschrijving . "','" . $this->titel . "','" . $this->locatie . "','" . $this->fblink . "','" . $this->heledag . "','" . $this->minniveau . "');";
         $result = $this->db->query($query);
         if (!$result) {
-            return $this->getFailMessage();
+            return $this->db->error;
+            //return $this->getFailMessage();
         } else {
             return $this->getSuccessMessage();
         }
@@ -48,7 +49,7 @@ class AddManager Extends Manager {
 
     public function getHTMLform() {
         $output = '<fieldset id="DiveEventForm"><legend>Kalender item toevoegen</legend><form action="event.php" method="POST">';
-        $output.= '<input type="hidden" value="' . $this->id . '" name="id" />';
+        $output.= '<input type="hidden" value="add" name="action" />';
         $output.='<label for="begin">Begin</label><input type="text" id="begin" name="begin" value="' . $this->begin . '" required placeholder="16-07-2015" /><br />';
         $output.='<label for="einde">Einde</label><input type="text" id="einde" name="einde" value="' . $this->einde . '" required placeholder="17-07-2015" /><br />';
         $output.='<label for="titel">Titel</label><input type="text" id="titel" name="titel" value="' . $this->titel . '" required placeholder="Hier komt de Titel" /><br />';
