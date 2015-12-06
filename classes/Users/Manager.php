@@ -99,9 +99,9 @@ class Manager {
     private function getChangePasswordForm() {
         $output = '<fieldset><legend>Je wachtwoord wijzigen</legend>';
         $output.= '<form action="usercp.php" method="POST">';
-        $output.= '<label for="oudww">Oud wachtwoord</label><input type="password" id="OudWW" name="OudWW" /><br />';
-        $output.= '<label for="nieuwwwa">Nieuw wachtwoord</label><input type="password" id="NieuwWWA" name="NieuwWWA" /><br />';
-        $output.= '<label for="nieuwwwb">Bevestig nieuw wachtwoord</label><input type="password" id="NieuwWWB" name="NieuwWWB" /><br />';
+        $output.= '<label for="oudww">Oud wachtwoord</label><input type="password" id="oudww" name="oudww" /><br />';
+        $output.= '<label for="nieuwwwa">Nieuw wachtwoord</label><input type="password" id="nieuwwwa" name="nieuwwwa" /><br />';
+        $output.= '<label for="nieuwwwb">Bevestig nieuw wachtwoord</label><input type="password" id="nieuwwwb" name="nieuwwwb" /><br />';
         $output.= '<input type="submit" value="Wijzig wachtwoord" />';
         $output.= '<input type="hidden" name="action" value="changepassword">';
         $output.= '</form>';

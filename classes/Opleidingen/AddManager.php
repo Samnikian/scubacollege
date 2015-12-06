@@ -46,9 +46,9 @@ class AddManager Extends Manager {
         $output.= '<textarea id="omschrijving" name="omschrijving" placeholder="Een omschrijving"></textarea><label for="minniveau">Min. Niveau</label>';
         $output.= $this->getOpleidingSelector();
         $output.= '<label for="prijs">Prijs</label><input type="" id="prijs" value="'.$this->prijs.'" name="prijs" placeholder="125€" /><br />';
-        $output.= '<label for="sessies_zwembad"></label><input type="number" id="sessies_zwembad" value="'.$this->sessies_zwembad.'" name="sessies_zwembad" /><br />';
-        $output.= '<label for="sessies_buiten"></label><input type="number" id="sessies_buiten" value="'.$this->sessies_buiten.'" name="sessies_buiten" /><br />';
-        $output.= '<label for="sessies_theorie"></label><input type="number" id="sessies_theorie" value="'.$this->sessies_theorie.'" name="sessies_theorie" /><br />';
+        $output.= '<label for="sessies_zwembad">Aantal zwembad sessies</label><input type="number" id="sessies_zwembad" value="'.$this->sessies_zwembad.'" name="sessies_zwembad" /><br />';
+        $output.= '<label for="sessies_buiten">Aantal buitenwaterduiken</label><input type="number" id="sessies_buiten" value="'.$this->sessies_buiten.'" name="sessies_buiten" /><br />';
+        $output.= '<label for="sessies_theorie">Aantal theorie sessies</label><input type="number" id="sessies_theorie" value="'.$this->sessies_theorie.'" name="sessies_theorie" /><br />';
         $output.= '<input type="submit" value="Toevoegen!" />';
         $output.= '</form></fieldset>';
         return $output;

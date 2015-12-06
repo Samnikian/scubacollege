@@ -11,7 +11,7 @@ require_once('header.php');
     </p>
     <p>
         <strong>Waar en wanneer gaan deze initiaties door?</strong><br />
-        De initiaties gaan door in het Maanhoevebad, in Sint-Katelijne-Waver bij Mechelen op zaterdagmiddag 
+        De initiaties gaan door in het <a href="https://www.google.be/maps/place/Maanhoevebad/@51.0450652,4.506602,15z/data=!4m2!3m1!1s0x0:0xc48b50616ec060e4" target="_blank">Maanhoevebad</a>, in Sint-Katelijne-Waver bij Mechelen op zaterdagmiddag 
         of op vrijdagavond in zwembad De Nekkerpool in Mechelen. Onderaan kan u een voorkeurstijdstip selecteren. 
         U krijgt van ons nog een bevestiging per e-mail.
     </p>
@@ -26,6 +26,10 @@ require_once('header.php');
     <p>
         <strong>Hoe kan ik me inschrijven?</strong><br />
         Vul het onderstaande inschrijvingsformulier in en druk op verzend. Wij contacteren U voor een afspraak !<!--telefoon????-->
+    </p>
+    <p>
+        <strong>Wat kost een initiatie?</strong><br />
+        Kostprijs van de initiatie is 10&euro;. U krijgt echter een korting van 10€ op de cursusprijs van de PADI Open Water Diver indien u na de initiatie inschrijft voor de meest populaire beginnerscursus duiken!
     </p>
     <p>
         <strong>Wat kan ik doen na deze duikinitiatie?</strong><br />

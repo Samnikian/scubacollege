@@ -34,7 +34,8 @@ class User {
                 $this->updatePassword($nieuwwwa);
                 return array(true, '<span class="melding">Wachtwoord succesvol gewijzigd.</span>');
             } else {
-                return array(false, '<span class="melding">Oud wachtwoord incorrect.</span>');
+                var_dump($this,$oudww);
+                //return array(false, '<span class="melding">Oud wachtwoord incorrect.</span>');
             }
         } else {
             return array(false, '<span class="melding">Nieuwe wachtwoorden zijn niet gelijk.</span>');

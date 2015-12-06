@@ -151,16 +151,16 @@ class Initiatie extends Contact {
         $this->output.='<label for="voorkeur">Voorkeur tijdsstip</label><select name="voorkeur" id="voorkeur">';
         switch ($this->voorkeur) {
             case 'zat1':
-                $this->output.='<option value="zat1" selected>Zaterdag van 13u45 tot 15u30</option><option value="zat2">Zaterdag van 15u15 tot 17u00</option><option value="vrij1">Vrijdag van 20u30 tot 22u00</option>';
+                $this->output.='<option value="zat1" selected>Zaterdag van 13u45 tot 15u30</option><option value="zat2">Zaterdag van 15u15 tot 17u00</option><option value="vrij1">Vrijdag van 20u30 tot 22u00</option></select><br />';
                 break;
             case 'zat2':
-                $this->output.='<option value="zat1">Zaterdag van 13u45 tot 15u30</option><option value="zat2" selected>Zaterdag van 15u15 tot 17u00</option><option value="vrij1">Vrijdag van 20u30 tot 22u00</option>';
+                $this->output.='<option value="zat1">Zaterdag van 13u45 tot 15u30</option><option value="zat2" selected>Zaterdag van 15u15 tot 17u00</option><option value="vrij1">Vrijdag van 20u30 tot 22u00</option></select><br />';
                 break;
             case 'vrij1':
-                $this->output.='<option value="zat1">Zaterdag van 13u45 tot 15u30</option><option value="zat2">Zaterdag van 15u15 tot 17u00</option><option value="vrij1" selected>Vrijdag van 20u30 tot 22u00</option>';
+                $this->output.='<option value="zat1">Zaterdag van 13u45 tot 15u30</option><option value="zat2">Zaterdag van 15u15 tot 17u00</option><option value="vrij1" selected>Vrijdag van 20u30 tot 22u00</option></select><br />';
                 break;
             default:
-                $this->output.='<option value="zat1" selected>Zaterdag van 13u45 tot 15u30</option><option value="zat2">Zaterdag van 15u15 tot 17u00</option><option value="vrij1">Vrijdag van 20u30 tot 22u00</option>';
+                $this->output.='<option value="zat1" selected>Zaterdag van 13u45 tot 15u30</option><option value="zat2">Zaterdag van 15u15 tot 17u00</option><option value="vrij1">Vrijdag van 20u30 tot 22u00</option></select><br />';
                 break;
         }
     }
